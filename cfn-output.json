@@ -1,0 +1,8 @@
+{
+    "EKSCloud9EnvId": "https://eu-west-1.console.aws.amazon.com/cloud9/ide/f18841777c90431a90805562ce34425f?region=eu-west-1",
+    "LoadBalancerDNS": "alb-mod-c24aacc7ec26455c-1850852543.eu-west-1.elb.amazonaws.com",
+    "DynamoTable": "Table-mod-c24aacc7ec26455c",
+    "ProfileName": "mod-c24aacc7ec26455c-MythicalProfile-F47YWRZMZK1P",
+    "SiteBucket": "mod-c24aacc7ec26455c-mythicalbucket-1dzr22hp2tt9w",
+    "S3WebsiteURL": "http://mod-c24aacc7ec26455c-mythicalbucket-1dzr22hp2tt9w.s3-website-eu-west-1.amazonaws.com"
+  }
