@@ -25,7 +25,7 @@ spec:
             - containerPort: 80
               protocol: TCP
           env:
-            - name: TABLE_NAME
+            - name: DDB_TABLE_NAME
               value: ${TABLE_NAME}
             - name: AWS_DEFAULT_REGION
               value: ${AWS_REGION}
@@ -91,9 +91,9 @@ spec:
 EOF
 
 
-#kubectl apply -f likeservice-app.yaml
-#kubectl apply -f nolikeservice-app.yaml
-#sleep 5
-#kubectl logs deployments/mythical-mysfits-nolike
-#kubectl logs deployments/mythical-mysfits-like
+kubectl apply -f likeservice-app.yaml
+kubectl apply -f nolikeservice-app.yaml
+sleep 5
+kubectl logs deployments/mythical-mysfits-nolike
+kubectl logs deployments/mythical-mysfits-like
 
