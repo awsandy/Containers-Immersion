@@ -1,5 +1,4 @@
 cd /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/
-TABLE_NAME=$(jq < cfn-output.json -r '.DynamoTable')
 cat << EOF > nolikeservice-app.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -21,7 +20,7 @@ spec:
       serviceAccount: mythical-misfit
       containers:
         - name: mythical-mysfits-nolike
-          image: <<PUT_YOUR_NOLIKE_IMAGE_ECR_ARN>>
+          image: ${MONO_ECR_REPOSITORY_URI}:nolike
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -47,7 +46,7 @@ spec:
        targetPort: 80
 EOF
 
-TABLE_NAME=$(jq < cfn-output.json -r '.DynamoTable')
+export LIKE_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep like)
 cat << EOF > likeservice-app.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -69,14 +68,14 @@ spec:
       serviceAccount: mythical-misfit
       containers:
         - name: mythical-mysfits-like
-          image: <<PUT_YOUR_LIKE_IMAGE_ECR_ARN>>
+          image: ${LIKE_ECR_REPOSITORY_URI}:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
               protocol: TCP
           env:
             - name: MONOLITH_URL
-              value: <<PUT_THE_DNS_NAME_OF_YOUR_ALB>>
+              value: ${ELB}
 ---
 apiVersion: v1
 kind: Service
