@@ -21,7 +21,7 @@ aws iam create-policy \
 #get the policy ARN
 export PolicyARNDynamoDB=$(aws iam list-policies --query 'Policies[?PolicyName==`MythicalMisfitDynamoDBTablePolicy`].Arn' --output text)
 echo $PolicyARNDynamoDB
-echo "serv acct"
+echo "Create service account  ......"
 eksctl create iamserviceaccount \
 		--cluster=mythicaleks-eksctl \
 		--namespace=default \
