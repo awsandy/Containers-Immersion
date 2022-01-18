@@ -4,7 +4,7 @@ aws iam create-policy \
       --policy-name AWSLoadBalancerControllerIAMPolicy \
       --policy-document file://iam-policy.json
 
-echo"get the policy ARN"
+echo "get the policy ARN"
 export PolicyARN=$(aws iam list-policies --query 'Policies[?PolicyName==`AWSLoadBalancerControllerIAMPolicy`].Arn' --output text)
 echo $PolicyARN
 eksctl create iamserviceaccount \
@@ -22,7 +22,8 @@ helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
   --set clusterName=mythicaleks-eksctl \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller
-sleep 5
+echo "sleep 10 ...."
+sleep 10
 kubectl logs -n kube-system deployments/aws-load-balancer-controller
 sleep 5
 kubectl -n kube-system get deployments
