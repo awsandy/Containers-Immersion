@@ -1,4 +1,3 @@
-cd /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/
 cat << EOF > nolikeservice-app.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -26,7 +25,7 @@ spec:
             - containerPort: 80
               protocol: TCP
           env:
-            - name: DDB_TABLE_NAME
+            - name: TABLE_NAME
               value: ${TABLE_NAME}
             - name: AWS_DEFAULT_REGION
               value: ${AWS_REGION}
