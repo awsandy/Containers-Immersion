@@ -1,5 +1,4 @@
 cd /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
-TABLE_NAME=$(jq < ../../cfn-output.json -r '.DynamoTable')
 cat << EOF > iam-dynamodb-policy.json
 {
 "Version": "2012-10-17",
