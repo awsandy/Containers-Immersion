@@ -8,6 +8,7 @@ echo "export ACCOUNT_ID=${ACCOUNT_ID}" >> ~/.bash_profile
 echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
 aws configure set default.region ${AWS_REGION}
 aws configure get default.region
+. ~/.bash_profile
 echo "ssh key"
 if [ ! -f ~/.ssh/id_rsa ]; then
   mkdir -p ~/.ssh
