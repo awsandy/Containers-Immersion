@@ -91,9 +91,9 @@ spec:
 EOF
 
 
-kubectl apply -f likeservice-app.yaml
-kubectl apply -f nolikeservice-app.yaml
-sleep 5
-kubectl logs deployments/mythical-mysfits-nolike
-kubectl logs deployments/mythical-mysfits-like
+#kubectl apply -f likeservice-app.yaml
+#kubectl apply -f nolikeservice-app.yaml
+#sleep 5
+#kubectl logs deployments/mythical-mysfits-nolike
+#kubectl logs deployments/mythical-mysfits-like
 
