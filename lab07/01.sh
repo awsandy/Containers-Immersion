@@ -1,4 +1,6 @@
 cd /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
+export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
+export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 cat << EOF > iam-dynamodb-policy.json
 {
 "Version": "2012-10-17",
