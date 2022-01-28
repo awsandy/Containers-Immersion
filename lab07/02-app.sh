@@ -1,3 +1,4 @@
+. ~/.bash_profile
 cat << EOF > monolith-app.yaml
 apiVersion: apps/v1
 kind: Deployment
