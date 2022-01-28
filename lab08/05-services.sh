@@ -17,8 +17,7 @@ cp likeservice-app.yaml likeservice-app.yaml.orig
 s1=$(grep value likeservice-app.yaml.orig | cut -f2 -d':' | tr -d ' ')
 comm=$(printf "sed 's/%s/%s/' likeservice-app.yaml.orig > likeservice-app.yaml" $s1 $ALB)
 echo $comm
-echo "edit  likeservice-app.yaml - update ALB name"
-grep  $ALB likeservice-app.yaml
+grep $ALB likeservice-app.yaml
 if [[ $? -eq 0 ]];then
     echo "ALB sub ok - applying service"
     kubectl apply -f likeservice-app.yaml
@@ -37,4 +36,4 @@ hc=0
 
 echo "found $hc healthy" 
 done
-echo "tergets healthy"
+echo "targets healthy"
