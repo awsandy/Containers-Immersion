@@ -1,3 +1,4 @@
+export AWS_REGION=$(aws configure get region)
 cat << EOF > mythicaleks.yaml
 ---
 apiVersion: eksctl.io/v1alpha5
