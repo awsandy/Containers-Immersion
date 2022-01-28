@@ -22,3 +22,15 @@ else
     echo "ALB substitution $ALB may have failed in likeservice-app.yaml - exit"
     exit
 fi
+hc=0
+while [[ $hc -lt 6 ]];do
+sleep 10
+hc=0
+    for i in `aws elbv2 describe-target-groups --query TargetGroups[].TargetGroupArn | jq -r .[] | grep k8s`;do
+        hc1=$(aws elbv2 describe-target-health --target-group-arn $i --query TargetHealthDescriptions[].TargetHealth.State | grep healthy | wc -l)
+        hc=`expr $hc + $hc1`   
+    done
+
+echo "found $hc healthy" 
+done
+echo "tergets healthy"
