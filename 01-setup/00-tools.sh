@@ -5,7 +5,7 @@ sudo curl --silent --location -o /usr/local/bin/kubectl \
 https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
 sudo chmod +x /usr/local/bin/kubectl
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-sudo yum -y install gettext bash-completion moreutils
+sudo yum -y install gettext bash-completion moreutils jq
 kubectl completion bash >>  ~/.bash_completion
 eksctl completion bash >> ~/.bash_completion
 . ~/.bash_completion
