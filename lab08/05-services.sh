@@ -1,4 +1,4 @@
-ALB=$(kubectl get ing mythical-mysfits-eks -o json | jq -r '.status.loadBalancer.ingress[0].hostname')
+ALB=$(kubectl get ing mythical-mysfits-eks -o json | jq -r '.status.loadBalancer.ingress[0].hostname' | grep -v Ingress)
 echo $ALB
 echo "copying /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/web/index.html"
 cp /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/web/index.html index.html.orig 
