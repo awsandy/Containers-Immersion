@@ -25,6 +25,6 @@ helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
 echo "sleep 10 ...."
 sleep 10
 kubectl logs -n kube-system deployments/aws-load-balancer-controller
-sleep 5
+sleep 10
 kubectl -n kube-system get deployments
 
