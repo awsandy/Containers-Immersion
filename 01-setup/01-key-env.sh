@@ -20,3 +20,7 @@ export BUCKET_NAME=$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/work
 export TABLE_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.DynamoTable')"
 export API_ENDPOINT=$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -er '.LoadBalancerDNS')
 export MONO_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
+echo "export BUCKET_NAME=${BUCKET_NAME}" >> ~/.bash_profile
+echo "export TABLE_NAME=${TABLE_NAME}" >> ~/.bash_profile
+echo "export API_ENDPOINT=${API_ENDPOINT}" >> ~/.bash_profile
+echo "export MONO_ECR_REPOSITORY_URI=${MONO_ECR_REPOSITORY_URI}" >> ~/.bash_profile
