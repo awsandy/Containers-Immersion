@@ -16,9 +16,9 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   chmod 600 ~/.ssh/id*
 fi
 aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material file://~/.ssh/id_rsa.pub
-export BUCKET_NAME=$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.SiteBucket')
-export TABLE_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.DynamoTable')"
-export API_ENDPOINT=$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -er '.LoadBalancerDNS')
+export BUCKET_NAME=$(aws cloudformation describe-stacks --stack-name $st | jq .Stacks[].Outputs | jq -r '.[] | select(.OutputKey=="SiteBucket").OutputValue')
+export TABLE_NAME=$(aws cloudformation describe-stacks --stack-name $st | jq .Stacks[].Outputs | jq -r '.[] | select(.OutputKey=="DynamoTable").OutputValue')
+export API_ENDPOINT=$(aws cloudformation describe-stacks --stack-name $st | jq .Stacks[].Outputs | jq -r '.[] | select(.OutputKey=="LoadBalancerDNS").OutputValue')
 export MONO_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
 echo "export BUCKET_NAME=${BUCKET_NAME}" >> ~/.bash_profile
 echo "export TABLE_NAME=${TABLE_NAME}" >> ~/.bash_profile

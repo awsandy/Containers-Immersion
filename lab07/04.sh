@@ -1,2 +1,6 @@
-cd /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/web
-echo 'Take the ELB URL and search for "mysfitsApiEndpoint" in the index.html file and replace the ELB DNS name without any trailing "/".'
+cp /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/web/index.html index.html.orig
+grep REPLACE_ME_API_ENDPOINT index.html.orig
+comm=$(printf "sed 's/REPLACE_ME_API_ENDPOINT/http:\/\/%s/' index.html.orig > index.html" $ELB)
+echo $comm
+eval $comm
+grep mysfitsApiEndpoint index.html | grep '.com'
