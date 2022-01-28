@@ -1,3 +1,7 @@
+. ~/.bash_profile
+echo  ${MONO_ECR_REPOSITORY_URI}
+echo ${TABLE_NAME}
+echo ${AWS_REGION}
 cat << EOF > nolikeservice-app.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -93,7 +97,8 @@ EOF
 
 kubectl apply -f likeservice-app.yaml
 kubectl apply -f nolikeservice-app.yaml
-sleep 5
+sleep 10
+echo "check some logs"
 kubectl logs deployments/mythical-mysfits-nolike
 kubectl logs deployments/mythical-mysfits-like
 

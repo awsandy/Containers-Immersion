@@ -24,5 +24,6 @@ EOF
 
 kubectl apply -f mythical-ingress.yaml
 kubectl get ingress/mythical-mysfits-eks
-sleep 5
+sleep 10
+echo "check some logs"
 kubectl logs -n kube-system deployments/aws-load-balancer-controller -f
