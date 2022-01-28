@@ -99,6 +99,6 @@ kubectl apply -f likeservice-app.yaml
 kubectl apply -f nolikeservice-app.yaml
 sleep 10
 echo "check some logs"
-kubectl logs deployments/mythical-mysfits-nolike
-kubectl logs deployments/mythical-mysfits-like
+kubectl logs deployments/mythical-mysfits-nolike | grep Running
+kubectl logs deployments/mythical-mysfits-like | grep Running
 
