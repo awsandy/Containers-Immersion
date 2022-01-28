@@ -27,4 +27,4 @@ kubectl get ingress/mythical-mysfits-eks
 echo "sleeping 15 ...."
 sleep 15
 echo "check some logs"
-kubectl logs kube-system deployments/aws-load-balancer-controller
+kubectl logs -n kube-system deployments/aws-load-balancer-controller
