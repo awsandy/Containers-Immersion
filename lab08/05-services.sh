@@ -1,5 +1,9 @@
 ALB=$(kubectl get ing mythical-mysfits-eks -o json | jq -r '.status.loadBalancer.ingress[0].hostname' | grep -v Ingress)
-echo $ALB
+echo $ALB | grep elb > /dev/null
+if [[ $? -ne 0 ]];then
+    echo "ALB not ready exiting"
+    exit
+fi
 echo "copying /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/web/index.html"
 cp /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/web/index.html index.html.orig 
 echo "edit index.html"
