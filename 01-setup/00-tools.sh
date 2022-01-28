@@ -16,4 +16,9 @@ for command in kubectl jq envsubst aws eksctl kubectl helm
 do
     which $command &>/dev/null && echo "$command in path" || echo "$command NOT FOUND"
 done
+echo "check sts"
+aws sts get-caller-identity --query Arn | grep TeamRole
+if [[ $? -ne 0 ]];then
+    echo "Check AWS temporary switch - and EC2 assigned to TeamRole"
+fi
 
