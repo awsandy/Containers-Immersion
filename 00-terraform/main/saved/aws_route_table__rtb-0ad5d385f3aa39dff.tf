@@ -17,6 +17,7 @@ resource "aws_route_table" "rtb-0ad5d385f3aa39dff" {
       transit_gateway_id         = ""
       vpc_endpoint_id            = ""
       vpc_peering_connection_id  = ""
+      core_network_arn = ""
     },
   ]
   tags     = {}

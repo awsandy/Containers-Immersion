@@ -4,13 +4,13 @@ resource "aws_iam_role" "TeamRole" {
   assume_role_policy = jsonencode(
     {
       Statement = [
-        {
-          Action = "sts:AssumeRole"
-          Effect = "Allow"
-          Principal = {
-            "AWS" = format("arn:aws:iam::%s:user/EEOverlord", data.aws_caller_identity.current.account_id)
-          }
-        },
+        #{
+        #  Action = "sts:AssumeRole"
+        #  Effect = "Allow"
+        #  Principal = {
+        #    "AWS" = format("arn:aws:iam::%s:user/EEOverlord", data.aws_caller_identity.current.account_id)
+        #  }
+        #},
         {
           Action = "sts:AssumeRole"
           Effect = "Allow"
@@ -24,10 +24,7 @@ resource "aws_iam_role" "TeamRole" {
     }
   )
   force_detach_policies = false
-  managed_policy_arns = [
-    "arn:aws:iam::479455118968:policy/c24aacc7ec26455cbc6a0976b8e00ce0-policy",
-    "arn:aws:iam::479455118968:policy/team-default-policy",
-  ]
+
   max_session_duration = 43200
   name                 = "TeamRole"
   path                 = "/"

@@ -16,7 +16,7 @@ resource "aws_instance" "i-0682333a3bef23ed1" {
   monitoring                           = false
   secondary_private_ips                = []
   security_groups = [
-    "aws-cloud9-Project-mod-c24aacc7ec26455c-f18841777c90431a90805562ce34425f-InstanceSecurityGroup-JUKGOR0YSPPL",
+    aws_security_group.sg-04878d7caa7527a55.id,
   ]
   source_dest_check = true
   subnet_id         = aws_subnet.subnet-0912bc0c52f42bb89.id
@@ -56,11 +56,10 @@ resource "aws_instance" "i-0682333a3bef23ed1" {
   root_block_device {
     delete_on_termination = true
     encrypted             = false
-    iops                  = 100
     tags                  = {}
     throughput            = 0
-    volume_size           = 10
-    volume_type           = "gp2"
+    volume_size           = 32
+    volume_type           = "gp3"
   }
 
   timeouts {}

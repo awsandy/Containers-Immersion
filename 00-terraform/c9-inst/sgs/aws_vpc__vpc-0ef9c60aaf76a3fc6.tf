@@ -8,6 +8,13 @@ resource "aws_vpc" "vpc-0ef9c60aaf76a3fc6" {
   enable_dns_hostnames             = true
   enable_dns_support               = true
   instance_tenancy                 = "default"
-  tags                             = {}
-  tags_all                         = {}
+
+    tags = {
+    "Name"    = "EKS-Immersion"
+
+  }
+  tags_all = {
+    "Name"    = "EKS-Immersion"
+
+  }
 }

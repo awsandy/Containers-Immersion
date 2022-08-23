@@ -3,10 +3,10 @@
 resource "aws_security_group" "sg-04878d7caa7527a55" {
   description = "Security group for AWS Cloud9 environment aws-cloud9-Project-mod-c24aacc7ec26455c-f18841777c90431a90805562ce34425f"
   tags = {
-    "Name" = "aws-cloud9-Project-mod-c24aacc7ec26455c-f18841777c90431a90805562ce34425f"
+    "Name" = "aws-cloud9-Project-mod"
   }
   tags_all = {
-    "Name" = "aws-cloud9-Project-mod-c24aacc7ec26455c-f18841777c90431a90805562ce34425f"
+    "Name" = "aws-cloud9-Project-mod"
   }
   vpc_id = aws_vpc.vpc-0ef9c60aaf76a3fc6.id
 

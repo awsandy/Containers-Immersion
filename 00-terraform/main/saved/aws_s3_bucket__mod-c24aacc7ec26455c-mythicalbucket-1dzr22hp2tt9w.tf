@@ -8,8 +8,6 @@ resource "aws_s3_bucket" "mod-c24aacc7ec26455c-mythicalbucket-1dzr22hp2tt9w" {
   request_payer    = "BucketOwner"
   tags             = {}
   tags_all         = {}
-  website_domain   = "s3-website-eu-west-1.amazonaws.com"
-  website_endpoint = "mod-c24aacc7ec26455c-mythicalbucket-1dzr22hp2tt9w.s3-website-eu-west-1.amazonaws.com"
 
   grant {
     permissions = [

@@ -2,7 +2,7 @@
 # aws_cloudwatch_log_group.mod-c24aacc7ec26455c-MythicalMonolithLogGroup-A9DqmJvGeCqt:
 resource "aws_cloudwatch_log_group" "mod-c24aacc7ec26455c-MythicalMonolithLogGroup-A9DqmJvGeCqt" {
   name              = "mod-c24aacc7ec26455c-MythicalMonolithLogGroup-A9DqmJvGeCqt"
-  retention_in_days = 0
+  retention_in_days = 7
   tags              = {}
   tags_all          = {}
 }
