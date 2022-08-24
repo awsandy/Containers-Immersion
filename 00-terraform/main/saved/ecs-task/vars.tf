@@ -30,3 +30,7 @@ variable "ruri" {
 variable "sn" {
   type = string
 }
+
+variable "muid" {
+  type = string
+}
