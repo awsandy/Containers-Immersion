@@ -1,0 +1,3 @@
+variable "lgn" {
+  type = string
+}
