@@ -26,3 +26,7 @@ variable "cn" {
 variable "ruri" {
   type = string
 }
+
+variable "sn" {
+  type = string
+}
