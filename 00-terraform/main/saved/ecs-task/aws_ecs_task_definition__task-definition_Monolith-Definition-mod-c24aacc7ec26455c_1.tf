@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "task-definition_Monolith-Definition-mod-c24a
           logDriver = "awslogs"
           options = {
             awslogs-group         = var.lgn
-            awslogs-region        = "eu-west-1"
+            awslogs-region        = data.aws_region.current.name
             awslogs-stream-prefix = "awslogs-mythicalmysfits-service"
           }
           secretOptions = []
