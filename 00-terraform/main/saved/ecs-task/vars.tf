@@ -13,3 +13,7 @@ variable "esr" {
 variable "lb" {
   type = string
 }
+
+variable "tn" {
+  type = string
+}

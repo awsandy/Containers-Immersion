@@ -14,7 +14,7 @@ resource "aws_ecs_task_definition" "task-definition_Monolith-Definition-mod-c24a
         environment = [
           {
             name  = "DDB_TABLE_NAME"
-            value = "Table-mod-c24aacc7ec26455c"
+            value = var.tn
           },
           {
             name  = "UPSTREAM_URL"
