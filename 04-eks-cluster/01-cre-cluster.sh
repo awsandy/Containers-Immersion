@@ -8,7 +8,7 @@ kind: ClusterConfig
 metadata:
   name: mythicaleks-eksctl
   region: ${AWS_REGION}
-  version: "1.19"
+  version: "1.22"
 
 availabilityZones: ["${AWS_REGION}a", "${AWS_REGION}b", "${AWS_REGION}c"]
 
@@ -25,6 +25,7 @@ managedNodeGroups:
 #    enableTypes: ["*"]
 
 EOF
+
 
 eksctl create cluster -f mythicaleks.yaml
 aws eks update-kubeconfig --name mythicaleks-eksctl
