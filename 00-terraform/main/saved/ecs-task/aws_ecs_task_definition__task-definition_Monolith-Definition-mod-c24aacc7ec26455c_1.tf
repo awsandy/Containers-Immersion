@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "task-definition_Monolith-Definition-mod-c24a
           },
           {
             name  = "UPSTREAM_URL"
-            value = "alb-mod-c24aacc7ec26455c-1850852543.eu-west-1.elb.amazonaws.com"
+            value = var.lb
           },
         ]
         environmentFiles = []
@@ -52,7 +52,7 @@ resource "aws_ecs_task_definition" "task-definition_Monolith-Definition-mod-c24a
     ]
   )
   cpu                = "256"
-  execution_role_arn = aws_iam_role.mod-c24aacc7ec26455c-EcsServiceRole-DV5IQXOF68PL.arn
+  execution_role_arn = var.esr
   family             = "Monolith-Definition-mod-c24aacc7ec26455c"
   memory             = "512"
   network_mode       = "awsvpc"
@@ -61,5 +61,5 @@ resource "aws_ecs_task_definition" "task-definition_Monolith-Definition-mod-c24a
   ]
   tags          = {}
   tags_all      = {}
-  task_role_arn = aws_iam_role.mod-c24aacc7ec26455c-ECSTaskRole-22OPM1OFJ77W.arn
+  task_role_arn = var.etr
 }
