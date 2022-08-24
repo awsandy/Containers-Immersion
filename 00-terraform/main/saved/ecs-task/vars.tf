@@ -18,6 +18,10 @@ variable "tn" {
   type = string
 }
 
+variable "cn" {
+  type = string
+}
+
 
 variable "ruri" {
   type = string
