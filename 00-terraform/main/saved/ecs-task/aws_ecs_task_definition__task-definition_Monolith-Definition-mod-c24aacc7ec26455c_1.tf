@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "task-definition_Monolith-Definition-mod-c24a
         environmentFiles = []
         essential        = true
         extraHosts       = []
-        image            = "nginx:latest"
+        image            = format("%s,:latest",var.ruri)
         links            = []
         logConfiguration = {
           logDriver = "awslogs"

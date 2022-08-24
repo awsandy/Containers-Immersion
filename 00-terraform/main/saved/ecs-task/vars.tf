@@ -17,3 +17,8 @@ variable "lb" {
 variable "tn" {
   type = string
 }
+
+
+variable "ruri" {
+  type = string
+}
