@@ -1,6 +1,5 @@
 source ~/.bash_profile
 
-
 # ------  resize OS disk -----------
 
 # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
@@ -45,15 +44,3 @@ else
   sudo xfs_growfs /dev/nvme0n1p1 #(Amazon Linux 2)
 fi
 
-test -n "$AWS_REGION" && echo "PASSED: AWS_REGION is $AWS_REGION" || echo AWS_REGION is not set !!
-test -n "$TF_VAR_region" && echo "PASSED: TF_VAR_region is $TF_VAR_region" || echo TF_VAR_region is not set !!
-test -n "$ACCOUNT_ID" && echo "PASSED: ACCOUNT_ID is $ACCOUNT_ID" || echo ACCOUNT_ID is not set !!
-echo "setup tools run" >> ~/setup-tools.log
-
-cd ~/environment/tfekscode/Launch/lb2
-curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json -s
-
-cd $this
-#
-# final checks
-#
