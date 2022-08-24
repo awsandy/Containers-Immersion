@@ -13,4 +13,5 @@ echo $TF_VAR_tn
 echo $TF_VAR_ruri
 echo $TF_VAR_cn
 terraform validate
+terraform refresh
 terraform plan -out tfplan
