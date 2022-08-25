@@ -9,7 +9,7 @@ rm -rf aws
 unzip -qq awscliv2.zip
 sudo ./aws/install 2&> /dev/null
 sudo ./aws/install --update 2&> /dev/null
-rm /usr/bin/aws
+sudo rm -f /usr/bin/aws
 sudo ln -s /usr/local/aws-cli/v2/current/bin/aws /usr/bin/aws
 rm -f awscliv2.zip
 rm -rf aws
