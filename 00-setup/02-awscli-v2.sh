@@ -1,7 +1,3 @@
-echo "Install OS tools"
-sudo yum -y -q -e 0 install  jq moreutils nmap > /dev/null
-echo "Update OS tools"
-sudo yum update -y > /dev/null
 echo "Update pip"
 sudo pip install --upgrade pip 2&> /dev/null
 echo "Uninstall AWS CLI v1"
