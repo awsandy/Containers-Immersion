@@ -9,7 +9,6 @@ while [[ $? -ne 0 ]]; do
 echo "not ready sleep 15s .."
 sleep 15
 curl -s $TF_VAR_lb/mysfits | grep haetae > /dev/null
-
 done
 echo "success"
 curl $TF_VAR_lb/mysfits
