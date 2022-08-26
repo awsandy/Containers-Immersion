@@ -35,7 +35,7 @@ cat << EOF > mono-container.json
         ]
         "essential"        = true
 
-        "image"            = "${TF_VAR_lb}:latest"
+        "image"            = "${TF_VAR_ruri}:latest"
        
         "logConfiguration" = {
           "logDriver" = "awslogs"
