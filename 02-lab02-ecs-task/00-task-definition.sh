@@ -31,7 +31,7 @@ cat << EOF > mono-container.json
           {
             "name": "UPSTREAM_URL",
             "value": "${TF_VAR_lb}"
-          },
+          }
         ]
         "essential":  true,
         "image": "${TF_VAR_ruri}:latest",
@@ -51,7 +51,7 @@ cat << EOF > mono-container.json
             "containerPort": 80,
             "hostPort": 80,
             "protocol": "tcp"
-          },
+          }
         ]
       }
 ]
