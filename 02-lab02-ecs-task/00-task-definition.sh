@@ -6,7 +6,7 @@ export TF_VAR_tn=$(aws dynamodb list-tables | jq -r '. | select(.TableNames[] | 
 export TF_VAR_cn=$(aws ecs list-clusters | jq -r '. | select(.clusterArns[] | contains("Cluster-mod-")).clusterArns' | jq -r .[0] | rev | cut -f1 -d'/' | rev)
 export TF_VAR_sn=$(aws ecs list-services --cluster $TF_VAR_cn | jq -r '. | select(.serviceArns[] | contains("MythicalMonolithService")).serviceArns' | jq -r .[0] | rev | cut -f1 -d'/' | rev)
 export TF_VAR_ruri=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
-export TF_VAR_muid=$(echo TF_VAR_lgn | cut -f2 -d'-')
+export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f2 -d'-')
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 
@@ -18,7 +18,7 @@ echo $TF_VAR_tn
 echo $TF_VAR_ruri
 echo $TF_VAR_cn
 echo $TF_VAR_sn
-echo $TF_VAR_muid
+echo muid=$TF_VAR_muid
 
 cat << EOF > mono-container.json
 [
@@ -57,12 +57,9 @@ cat << EOF > mono-container.json
 ]
 EOF
 
-aws ecs register-task-definition \
---familly Monolith-Definition-mod-$TF_VAR_muid \ 
---network-mode awsvpc \
---task-role-arn $TF_VAR_etr \
---execution-role-arn $TF_VAR_esr \
+aws ecs register-task-definition --family Monolith-Definition-mod-${TF_VAR_muid} --network-mode awsvpc \
+--task-role-arn ${TF_VAR_etr} \
+--execution-role-arn ${TF_VAR_esr} \
 --requires-compatibilities FARGATE \
 --cpu 256 \
---memeory 512 \ 
---container-definitions file://mono-container.json
+--memory 512 --container-definitions file://mono-container.json
