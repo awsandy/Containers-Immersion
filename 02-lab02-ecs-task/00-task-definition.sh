@@ -23,51 +23,38 @@ echo $TF_VAR_muid
 cat << EOF > mono-container.json
 [
       {
-        command               = []
-        cpu                   = 0
-        dnsSearchDomains      = []
-        dnsServers            = []
-        dockerLabels          = {}
-        dockerSecurityOptions = []
-        entryPoint            = []
-        environment = [
+        "environment" = [
           {
-            name  = "DDB_TABLE_NAME"
-            value = ${TF_VAR_tn}
+            "name"  = "DDB_TABLE_NAME"
+            "value" = "${TF_VAR_tn}"
           },
           {
-            name  = "UPSTREAM_URL"
-            value = ${TF_VAR_lb}
+            "name"  = "UPSTREAM_URL"
+            "value" = "${TF_VAR_lb}"
           },
         ]
-        environmentFiles = []
-        essential        = true
-        extraHosts       = []
-        image            = ${TF_VAR_lb}:latest
-        links            = []
-        logConfiguration = {
-          logDriver = "awslogs"
-          options = {
-            awslogs-group         = ${TF_VAR_lgn}
-            awslogs-region        = ${AWS_REGION}
-            awslogs-stream-prefix = "awslogs-mythicalmysfits-service"
+        "essential"        = true
+
+        "image"            = "${TF_VAR_lb}:latest"
+       
+        "logConfiguration" = {
+          "logDriver" = "awslogs"
+          "options" = {
+            "awslogs-group"         = "${TF_VAR_lgn}"
+            "awslogs-region"       = "${AWS_REGION}"
+            "awslogs-stream-prefix" = "awslogs-mythicalmysfits-service"
           }
-          secretOptions = []
         }
-        mountPoints = []
-        name        = "monolith-service"
-        portMappings = [
+
+        "name"        = "monolith-service"
+        "portMappings" = [
           {
-            containerPort = 80
-            hostPort      = 80
-            protocol      = "tcp"
+            "containerPort" = 80
+            "hostPort"      = 80
+            "protocol"      = "tcp"
           },
         ]
-        secrets        = []
-        systemControls = []
-        ulimits        = []
-        volumesFrom    = []
-      },
+      }
 ]
 EOF
 
