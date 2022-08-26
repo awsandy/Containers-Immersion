@@ -23,7 +23,7 @@ echo $TF_VAR_muid
 cat << EOF > mono-container.json
 [
       {
-        "environment" = [
+        "environment": [
           {
             "name"  = "DDB_TABLE_NAME"
             "value" = "${TF_VAR_tn}"
@@ -37,9 +37,9 @@ cat << EOF > mono-container.json
 
         "image"            = "${TF_VAR_ruri}:latest"
        
-        "logConfiguration" = {
+        "logConfiguration": {
           "logDriver" = "awslogs"
-          "options" = {
+          "options": {
             "awslogs-group"         = "${TF_VAR_lgn}"
             "awslogs-region"       = "${AWS_REGION}"
             "awslogs-stream-prefix" = "awslogs-mythicalmysfits-service"
@@ -47,7 +47,7 @@ cat << EOF > mono-container.json
         }
 
         "name"        = "monolith-service"
-        "portMappings" = [
+        "portMappings": [
           {
             "containerPort" = 80
             "hostPort"      = 80
