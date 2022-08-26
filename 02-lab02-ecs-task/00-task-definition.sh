@@ -25,33 +25,32 @@ cat << EOF > mono-container.json
       {
         "environment": [
           {
-            "name"  = "DDB_TABLE_NAME"
-            "value" = "${TF_VAR_tn}"
+            "name": "DDB_TABLE_NAME",
+            "value": "${TF_VAR_tn}"
           },
           {
-            "name"  = "UPSTREAM_URL"
-            "value" = "${TF_VAR_lb}"
+            "name": "UPSTREAM_URL",
+            "value": "${TF_VAR_lb}"
           },
         ]
-        "essential"        = true
-
-        "image"            = "${TF_VAR_ruri}:latest"
+        "essential":  true,
+        "image": "${TF_VAR_ruri}:latest",
        
         "logConfiguration": {
-          "logDriver" = "awslogs"
+          "logDriver": "awslogs",
           "options": {
-            "awslogs-group"         = "${TF_VAR_lgn}"
-            "awslogs-region"       = "${AWS_REGION}"
-            "awslogs-stream-prefix" = "awslogs-mythicalmysfits-service"
+            "awslogs-group": "${TF_VAR_lgn}",
+            "awslogs-region": "${AWS_REGION}",
+            "awslogs-stream-prefix": "awslogs-mythicalmysfits-service"
           }
-        }
+        },
 
-        "name"        = "monolith-service"
+        "name": "monolith-service",
         "portMappings": [
           {
-            "containerPort" = 80
-            "hostPort"      = 80
-            "protocol"      = "tcp"
+            "containerPort": 80,
+            "hostPort": 80,
+            "protocol": "tcp"
           },
         ]
       }
