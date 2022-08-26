@@ -4,3 +4,11 @@ export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f2 -d'-')
 export TF_VAR_lb=$(aws elbv2 describe-load-balancers --query LoadBalancers[].DNSName | jq -r .[])
 echo $TF_VAR_lb
 aws ecs list-tasks --cluster $TF_VAR_cn --family Monolith-Definition-mod-${TF_VAR_muid}
+curl $TF_VAR_lb/mysfits | grep haetae
+while [[ $? -ne 0 ]]; do
+echo "not ready sleep 15s .."
+sleep 15
+curl $TF_VAR_lb/mysfits | grep haetae
+
+done
+echo "success"

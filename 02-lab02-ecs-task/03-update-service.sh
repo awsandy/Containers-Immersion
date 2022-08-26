@@ -8,4 +8,4 @@ tdarn=$(aws ecs list-task-definitions --query taskDefinitionArns | jq -r .[] | g
 export TF_VAR_lb=$(aws elbv2 describe-load-balancers --query LoadBalancers[].DNSName | jq -r .[])
 
 
-aws ecs update-service --service $TF_VAR_sn --task-definition $tdarn
+aws ecs update-service --cluster $TF_VAR_cn --service $TF_VAR_sn --task-definition $tdarn
