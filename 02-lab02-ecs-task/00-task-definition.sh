@@ -32,7 +32,7 @@ cat << EOF > mono-container.json
             "name": "UPSTREAM_URL",
             "value": "${TF_VAR_lb}"
           }
-        ]
+        ],
         "essential":  true,
         "image": "${TF_VAR_ruri}:latest",
        
