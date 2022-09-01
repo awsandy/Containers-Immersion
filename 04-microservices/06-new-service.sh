@@ -6,7 +6,7 @@ export TF_VAR_lgn=$(aws logs describe-log-groups --query logGroups[].logGroupNam
 export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f2 -d'-')
 tdarn=$(aws ecs list-task-definitions --query taskDefinitionArns | jq -r .[] | grep Monolith-Definition-mod- | tail -1)
 export TF_VAR_lb=$(aws elbv2 describe-load-balancers --query LoadBalancers[].DNSName | jq -r .[])
-ldarn=$(aws ecs list-task-definitions --query taskDefinitionArns | jq -r .[] | grep Monolith-Definition-mod- | tail -1)
+ldarn=$(aws ecs list-task-definitions --query taskDefinitionArns | jq -r .[] | grep Like-Definition-mod- | tail -1)
 
 vpcid=$(aws ec2 describe-vpcs --filters "Name=is-default,Values=false" --query Vpcs[].VpcId | jq -r .[])
 sub1=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid" | jq '.Subnets[] |  select(.MapPublicIpOnLaunch==true)' | jq -r .SubnetId | head -1)
@@ -24,8 +24,9 @@ aws elbv2 create-target-group \
               --target-type ip \
               --vpc-id $vpcid 
 
-# tgarn=$(aws elbv2)
-# lnarn=$(aws elbv2)
+lbarn=$(aws elbv2 describe-load-balancers --query LoadBalancers[].LoadBalancerArn | jq -r .[])
+tgarn=$(aws elbv2 describe-target-groups --names mysfits-like-target --query TargetGroups[].TargetGroupArn | jq -r .[])
+lnarn=$(aws elbv2 describe-listeners --load-balancer-arn $lbarn --query Listeners[].ListenerArn | jq -r .[])
 cat << EOF > conditions-pattern.json
 [
     {
@@ -40,36 +41,34 @@ EOF
 # listener RULES tie ALB to a target group
 # add a rule for new target group path /mysfit/*/like
 
-#aws elbv2 create-rule \
-#              --listener-arn $lnarn \
-#              --priority 1 \
-#              --conditions file://conditions-pattern.json
-#              --actions Type=forward,TargetGroupArn=$tgarn
+aws elbv2 create-rule \
+              --listener-arn ${lnarn} \
+              --priority 1 \
+              --conditions file://conditions-pattern.json \
+              --actions Type=forward,TargetGroupArn=${tgarn}
 
 
-# create like service
-
-# tgarn=$(aws elbv2)
+# create like service - inject IP's form mysfits-like into target group
 
 cat << EOF > service-elb.json
 {
     "loadBalancers": [
         {
             "containerName": "mysfits-like",
-            "containerPort": 80
-            "targetGroupArn:" ${TF_VAR_tgarn}
-            }
-        ],
+            "containerPort": 80,
+            "targetGroupArn": "${tgarn}"
+        }
+    ]
 }
-
 EOF
 
 
 
-# Service injects container IP's into the defined ELB target group 
+# ECS Service injects container IP's into the defined ELB target group
+# container name is in json - and will match the one in task definition 
 
-aws ecs  create-service --cluster $TF_VAR_cn --service mysfits-like-service \
---task-definition $ldarn \
+aws ecs  create-service --cluster $TF_VAR_cn --service-name mysfits-like-service \
+--task-definition $ldarn \  # like task definition
 --desired-count 1 \
 --launch-type FARGATE \
 --platform-version LATEST \
