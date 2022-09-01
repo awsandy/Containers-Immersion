@@ -70,7 +70,7 @@ cat << EOF > like-container.json
           }
         ],
         "essential":  true,
-        "image": "${TF_VAR_luri}:nolike",
+        "image": "${TF_VAR_luri}:latest",
        
         "logConfiguration": {
           "logDriver": "awslogs",
