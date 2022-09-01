@@ -75,7 +75,7 @@ cat << EOF > like-container.json
         "logConfiguration": {
           "logDriver": "awslogs",
           "options": {
-            "awslogs-group": "/ecs/mysfits-like",
+            "awslogs-group": "${TF_VAR_lgn}",
             "awslogs-region": "${AWS_REGION}",
             "awslogs-stream-prefix": "like-mythicalmysfits-service"
           }

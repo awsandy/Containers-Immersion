@@ -25,9 +25,16 @@ aws elbv2 create-target-group \
               --target-type ip \
               --vpc-id $vpcid \
 
-#adjust listener ?
+#adjust listener RULES ?
+# listener RULES tie ALB to a target group
+# add a rule for new target group path /mysfit/*/like
+#
+
+
 
 # create like service
+
+# tgarn=$(aws elbv2)
 
 cat << EOF > service-elb.json
 {
