@@ -60,38 +60,6 @@ cat << EOF > mono-container.json
 EOF
 
 
-cat << EOF > like-container.json
-[
-      {
-        "environment": [
-          {
-            "name": "MONOLITH_URL",
-            "value": "${TF_VAR_lb}"
-          }
-        ],
-        "essential":  true,
-        "image": "${TF_VAR_luri}:latest",
-       
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-            "awslogs-group": "${TF_VAR_lgn}",
-            "awslogs-region": "${AWS_REGION}",
-            "awslogs-stream-prefix": "like-mythicalmysfits-service"
-          }
-        },
-
-        "name": "mysfits-like",
-        "portMappings": [
-          {
-            "containerPort": 80,
-            "hostPort": 80,
-            "protocol": "tcp"
-          }
-        ]
-      }
-]
-EOF
 
 
 
@@ -102,10 +70,4 @@ aws ecs register-task-definition --family Monolith-Definition-mod-${TF_VAR_muid}
 --cpu 256 \
 --memory 512 --container-definitions file://mono-container.json
 
-
-aws ecs register-task-definition --family Like-Definition-mod-${TF_VAR_muid} --network-mode awsvpc \
---execution-role-arn ${TF_VAR_esr} \
---requires-compatibilities FARGATE \
---cpu 256 \
---memory 512 --container-definitions file://like-container.json
 
