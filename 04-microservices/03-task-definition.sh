@@ -9,8 +9,7 @@ export TF_VAR_ruri=$(aws ecr describe-repositories | jq -r .repositories[].repos
 export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f2 -d'-')
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-
-
+export TF_VAR_luri=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep like)
 
 
 echo $TF_VAR_lgn
@@ -37,7 +36,7 @@ cat << EOF > mono-container.json
           }
         ],
         "essential":  true,
-        "image": "${TF_VAR_ruri}:latest",
+        "image": "${TF_VAR_ruri}:nolike",
        
         "logConfiguration": {
           "logDriver": "awslogs",
@@ -60,9 +59,53 @@ cat << EOF > mono-container.json
 ]
 EOF
 
+
+cat << EOF > like-container.json
+[
+      {
+        "environment": [
+          {
+            "name": "MONOLITH_URL",
+            "value": "${TF_VAR_lb}"
+          }
+        ],
+        "essential":  true,
+        "image": "${TF_VAR_luri}:nolike",
+       
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/mysfits-like",
+            "awslogs-region": "${AWS_REGION}",
+            "awslogs-stream-prefix": "like-mythicalmysfits-service"
+          }
+        },
+
+        "name": "mysfits-like",
+        "portMappings": [
+          {
+            "containerPort": 80,
+            "hostPort": 80,
+            "protocol": "tcp"
+          }
+        ]
+      }
+]
+EOF
+
+
+
 aws ecs register-task-definition --family Monolith-Definition-mod-${TF_VAR_muid} --network-mode awsvpc \
 --task-role-arn ${TF_VAR_etr} \
 --execution-role-arn ${TF_VAR_esr} \
 --requires-compatibilities FARGATE \
 --cpu 256 \
 --memory 512 --container-definitions file://mono-container.json
+
+
+aws ecs register-task-definition --family Like-Definition-mod-${TF_VAR_muid} --network-mode awsvpc \
+--execution-role-arn ${TF_VAR_esr} \
+--requires-compatibilities FARGATE \
+--cpu 256 \
+--memory 512 --container-definitions file://like-container.json
+
