@@ -13,10 +13,6 @@ sub1=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid" | jq '.Sub
 sg1=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcid" | jq '.SecurityGroups[] |  select(.Description=="Access to the load balancer")' | jq -r .GroupId | head -1)
 
 
-# update monlyth service
-aws ecs update-service --cluster $TF_VAR_cn --service $TF_VAR_sn --task-definition $tdarn
-
-
 # get lbname
 
 # create new target group
