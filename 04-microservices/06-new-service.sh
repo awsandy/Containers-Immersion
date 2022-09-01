@@ -24,11 +24,27 @@ aws elbv2 create-target-group \
               --target-type ip \
               --vpc-id $vpcid 
 
-#adjust listener RULES ?
+# tgarn=$(aws elbv2)
+# lnarn=$(aws elbv2)
+cat << EOF > conditions-pattern.json
+[
+    {
+        "Field": "path-pattern",
+        "PathPatternConfig": {
+            "Values": ["/mysfits/*/like"]
+        }
+    }
+]
+EOF
+
 # listener RULES tie ALB to a target group
 # add a rule for new target group path /mysfit/*/like
-#
 
+#aws elbv2 create-rule \
+#              --listener-arn $lnarn \
+#              --priority 1 \
+#              --conditions file://conditions-pattern.json
+#              --actions Type=forward,TargetGroupArn=$tgarn
 
 
 # create like service
