@@ -16,14 +16,13 @@ sg1=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcid" | j
 # get lbname
 
 # create new target group
-
-# aws elbv2 create-target-group  --name mysfits-like-target 
+ 
 aws elbv2 create-target-group \
               --name mysfits-like-target \
-              --protocol TCP \
+              --protocol HTTP \
               --port 80 \
               --target-type ip \
-              --vpc-id $vpcid \
+              --vpc-id $vpcid 
 
 #adjust listener RULES ?
 # listener RULES tie ALB to a target group
