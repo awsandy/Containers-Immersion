@@ -68,11 +68,9 @@ EOF
 # container name is in json - and will match the one in task definition 
 
 aws ecs  create-service --cluster $TF_VAR_cn --service-name mysfits-like-service \
---task-definition $ldarn \  # like task definition
+--task-definition $ldarn \
 --desired-count 1 \
 --launch-type FARGATE \
 --platform-version LATEST \
 --network-configuration "awsvpcConfiguration={subnets=[$sub1],securityGroups=[$sg1],assignPublicIp=ENABLED}" \
 --cli-input-json file://service-elb.json
-
-
