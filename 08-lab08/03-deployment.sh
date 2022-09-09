@@ -2,6 +2,7 @@
 echo  ${MONO_ECR_REPOSITORY_URI}
 echo ${TABLE_NAME}
 echo ${AWS_REGION}
+ALB=$(kubectl get ing mythical-mysfits-eks -o json | jq -r '.status.loadBalancer.ingress[0].hostname' | grep -v Ingress)
 cat << EOF > nolikeservice-app.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -78,7 +79,7 @@ spec:
               protocol: TCP
           env:
             - name: MONOLITH_URL
-              value: ${ELB}
+              value: ${ALB}
 ---
 apiVersion: v1
 kind: Service
