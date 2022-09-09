@@ -13,13 +13,19 @@ spec:
     - http:
         paths:
           - path: /mysfits/*/like
+            pathType: ImplementationSpecific
             backend:
-              serviceName: "mythical-mysfits-like"
-              servicePort: 80
+              service:
+                name: "mythical-mysfits-like"
+                port:
+                  number: 80
           - path: /*
+            pathType: ImplementationSpecific
             backend:
-              serviceName: "mythical-mysfits-nolike"
-              servicePort: 80
+              service:
+                name: "mythical-mysfits-nolike"
+                port: 
+                  number: 80
 EOF
 
 kubectl apply -f mythical-ingress.yaml
