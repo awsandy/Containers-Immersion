@@ -1,9 +1,13 @@
 sudo pip install --upgrade awscli && hash -r
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv -v /tmp/eksctl /usr/local/bin
-sudo curl --silent --location -o /usr/local/bin/kubectl \
-https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
-sudo chmod +x /usr/local/bin/kubectl
+echo "Setup kubectl"
+if [ ! `which kubectl 2> /dev/null` ]; then
+  echo "Install kubectl v1.24.12"
+  curl --silent -LO https://storage.googleapis.com/kubernetes-release/release/v1.24.12/bin/linux/amd64/kubectl  > /dev/null
+  chmod +x ./kubectl
+  sudo mv ./kubectl  /usr/local/bin/kubectl > /dev/null
+fi
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 sudo yum -y install gettext bash-completion moreutils jq
 kubectl completion bash >>  ~/.bash_completion

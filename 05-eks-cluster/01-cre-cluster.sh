@@ -8,7 +8,7 @@ kind: ClusterConfig
 metadata:
   name: mythicaleks-eksctl
   region: ${AWS_REGION}
-  version: "1.22"
+  version: "1.24"
 
 availabilityZones: ["${AWS_REGION}a", "${AWS_REGION}b", "${AWS_REGION}c"]
 
