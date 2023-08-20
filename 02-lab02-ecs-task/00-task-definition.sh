@@ -9,7 +9,7 @@ export TF_VAR_ruri=$(aws ecr describe-repositories | jq -r .repositories[].repos
 export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f2 -d'-')
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-
+echo "######"
 echo $TF_VAR_lgn
 echo $TF_VAR_etr
 echo $TF_VAR_esr
@@ -18,6 +18,7 @@ echo $TF_VAR_tn
 echo $TF_VAR_ruri
 echo $TF_VAR_cn
 echo $TF_VAR_sn
+echo "######"
 echo muid=$TF_VAR_muid
 
 cat << EOF > mono-container.json
