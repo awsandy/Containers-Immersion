@@ -13,19 +13,19 @@ if [[ $? -ne 0 ]]; then
 else
     echo "PASSED: BUCKET_NAME = $BUCKET_NAME"
 fi
-echo $TABLE_NAME | grep containersid
+echo $TABLE_NAME | grep containersid  > /dev/null
 if [[ $? -ne 0 ]]; then
     echo "ERROR: TABLE_NAME not set / incorrect = $TABLE_NAME"
 else
     echo "PASSED: TABLE_NAME = $TABLE_NAME"
 fi
-echo $API_ENDPOINT | grep containersid
+echo $API_ENDPOINT | grep containersid  > /dev/null
 if [[ $? -ne 0 ]]; then
     echo "ERROR: API_ENDPOINT not set / incorrect = $API_ENDPOINT"
 else
     echo "PASSED: API_ENDPOINT = $API_ENDPOINT"
 fi
-echo $MONO_ECR_REPOSITORY_URI | grep containersid
+echo $MONO_ECR_REPOSITORY_URI | grep containersid  > /dev/null
 if [[ $? -ne 0 ]]; then
     echo "ERROR: MONO_ECR_REPOSITORY_URI not set / incorrect = $MONO_ECR_REPOSITORY_URI"
 else
