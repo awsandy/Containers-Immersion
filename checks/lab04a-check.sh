@@ -12,8 +12,8 @@ if [[ $? -ne 0 ]]; then
 else
     echo "PASSED: mono image in ECR "  
 fi
-rn=$(aws ecr describe-repositories | jq -r .repositories[].repositoryName | grep containersid-mono) > /dev/null
-aws ecr describe-images --repository-name $rn | grep nolike 
+rn=$(aws ecr describe-repositories | jq -r .repositories[].repositoryName | grep containersid-mono) 
+aws ecr describe-images --repository-name $rn | grep nolike > /dev/null
 if [[ $? -ne 0 ]];then
     echo "ERROR: Can't find mono image nolike tag in ECR"
 else
