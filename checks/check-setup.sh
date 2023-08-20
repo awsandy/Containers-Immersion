@@ -6,6 +6,13 @@ else
     echo "PASSED: configured region $reg"
 fi
 ###
+aws ec2 describe-iam-instance-profile-associations --query IamInstanceProfileAssociations --output text | grep containersid-MythicalProfile > /dev/null
+if [[ $? -ne 0 ]]; then
+    echo "ERROR: instance profile incorrect"
+else
+    echo "PASSED: instance profile set correctly"
+fi
+###
 echo "checking base environment vars"
 echo $BUCKET_NAME | grep containersid-mythicalbucket > /dev/null
 if [[ $? -ne 0 ]]; then
@@ -31,3 +38,5 @@ if [[ $? -ne 0 ]]; then
 else
     echo "PASSED: MONO_ECR_REPOSITORY_URI = $MONO_ECR_REPOSITORY_URI"
 fi
+echo "check instance association"
+
