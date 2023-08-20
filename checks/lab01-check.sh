@@ -4,6 +4,7 @@ if [[ $rc -eq 2 ]]; then
 else
     echo "ERROR: found $rc images in ECR repo - expected 2"
 fi
+# image check
 aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono > /dev/null
 if [[ $? -ne 0 ]]; then
     echo "ERROR: Can't find mono image in ECR"
