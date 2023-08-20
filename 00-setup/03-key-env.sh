@@ -16,7 +16,7 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   chmod 600 ~/.ssh/id*
 fi
 aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material file://~/.ssh/id_rsa.pub
-st=$(aws cloudformation list-stacks --query StackSummaries[].StackName | grep mod | grep -v cloud9 | tr -d ' ' | tr -d '"')
+st="containersid"
 export BUCKET_NAME=$(aws cloudformation describe-stacks --stack-name $st | jq .Stacks[].Outputs | jq -r '.[] | select(.OutputKey=="SiteBucket").OutputValue')
 export TABLE_NAME=$(aws cloudformation describe-stacks --stack-name $st | jq .Stacks[].Outputs | jq -r '.[] | select(.OutputKey=="DynamoTable").OutputValue')
 export API_ENDPOINT=$(aws cloudformation describe-stacks --stack-name $st | jq .Stacks[].Outputs | jq -r '.[] | select(.OutputKey=="LoadBalancerDNS").OutputValue')

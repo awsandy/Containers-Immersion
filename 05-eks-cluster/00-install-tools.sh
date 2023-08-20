@@ -3,8 +3,8 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv -v /tmp/eksctl /usr/local/bin
 echo "Setup kubectl"
 if [ ! `which kubectl 2> /dev/null` ]; then
-  echo "Install kubectl v1.24.12"
-  curl --silent -LO https://storage.googleapis.com/kubernetes-release/release/v1.24.12/bin/linux/amd64/kubectl  > /dev/null
+  echo "Install kubectl v1.24.14"
+  curl --silent -LO https://dl.k8s.io/release/v1.24.14/bin/linux/amd64/kubectl  > /dev/null
   chmod +x ./kubectl
   sudo mv ./kubectl  /usr/local/bin/kubectl > /dev/null
 fi
