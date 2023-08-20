@@ -6,5 +6,8 @@ export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f2 -d'-')
 tdarn=$(aws ecs list-task-definitions --query taskDefinitionArns | jq -r .[] | grep Monolith | tail -1)
 export TF_VAR_lb=$(aws elbv2 describe-load-balancers --query LoadBalancers[].DNSName | jq -r .[])
 
-
+echo "update service"
 aws ecs update-service --cluster $TF_VAR_cn --service $TF_VAR_sn --task-definition $tdarn
+if [[ $? -ne 0 ]]; then
+    echo "failed to update service"
+fi
