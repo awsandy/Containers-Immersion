@@ -1,9 +1,10 @@
 # check task definition refers to mono
 rc=$(aws ecs list-task-definitions --query taskDefinitionArns --output text | grep containersid | grep -i mono | wc -l)
+echo $rc
 if [[ $rc -lt 1 ]]; then
-    echo "PASSED: found $rc task definitions for Mono"
+    echo "ERROR: no task definition for mono"  
 else
-    echo "ERROR: no task definition for mono"
+    echo "PASSED: found $rc task definitions for Mono"
 fi
 # image check
 aws ecs list-task-definitions --query taskDefinitionArns --output text | grep containersid | grep -i mono | grep ':2' >/dev/null
