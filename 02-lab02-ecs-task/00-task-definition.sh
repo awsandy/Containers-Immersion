@@ -58,7 +58,7 @@ cat << EOF > mono-container.json
 ]
 EOF
 
-aws ecs register-task-definition --family Monolith-Definition-mod-${TF_VAR_muid} --network-mode awsvpc \
+aws ecs register-task-definition --family Monolith-Definition-containersid --network-mode awsvpc \
 --task-role-arn ${TF_VAR_etr} \
 --execution-role-arn ${TF_VAR_esr} \
 --requires-compatibilities FARGATE \
