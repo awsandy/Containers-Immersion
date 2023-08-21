@@ -10,7 +10,6 @@ vpcid=$(aws ec2 describe-vpcs --filters "Name=is-default,Values=false" --query V
 sub1=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpcid" | jq '.Subnets[] |  select(.MapPublicIpOnLaunch==true)' | jq -r .SubnetId | head -1)
 sg1=$(aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$vpcid" | jq '.SecurityGroups[] |  select(.Description=="Access to the load balancer")' | jq -r .GroupId | head -1)
 
-
 # get lbname
 
 # create new target group
