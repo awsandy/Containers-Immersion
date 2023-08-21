@@ -26,7 +26,7 @@ resource "aws_iam_role_policy" "mod-c24aacc7ec26455c-ECSTaskRole-22OPM1OFJ77W__A
             "dynamodb:GetItem",
           ]
           Effect   = "Allow"
-          Resource = "arn:aws:dynamodb:eu-west-1:479455118968:table/Table-mod-c24aacc7ec26455c"
+          Resource = "arn:aws:dynamodb:eu-west-1:479455118968:table/containersidc24aacc7ec26455c"
         },
       ]
     }
