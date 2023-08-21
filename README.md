@@ -42,3 +42,16 @@ ECR
 containersid-like-8vloc4ntgy1t  (empty)
 containersid-mono-cxdsl3ptepdt  (empty)
 
+-----
+
+LAB01 - docker stuff
+Populates mono repo with one image 
+
+LAB02
+
+New version of task definition (Monolith-Definition-containersid:2)- pointing to monolth image above
+
+Run the task - directly - (get it's public ip) - curl http://TASK_PUBLIC_IP_ADDRESS/mysfits
+check cloud watch - then stop the task
+
+Update service to use the (Monolith-Definition-containersid:2) task definition
