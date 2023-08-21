@@ -11,7 +11,7 @@ export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 export TF_VAR_luri=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep like)
 
-
+echo "#####"
 echo $TF_VAR_lgn
 echo $TF_VAR_etr
 echo $TF_VAR_esr
@@ -20,6 +20,7 @@ echo $TF_VAR_tn
 echo $TF_VAR_ruri
 echo $TF_VAR_cn
 echo $TF_VAR_sn
+echo "#####"
 echo muid=$TF_VAR_muid
 
 cat << EOF > mono-container.json
@@ -63,7 +64,7 @@ EOF
 
 
 
-aws ecs register-task-definition --family Monolith-Definition-mod-${TF_VAR_muid} --network-mode awsvpc \
+aws ecs register-task-definition --family Monolith-Definition-containersid --network-mode awsvpc \
 --task-role-arn ${TF_VAR_etr} \
 --execution-role-arn ${TF_VAR_esr} \
 --requires-compatibilities FARGATE \
