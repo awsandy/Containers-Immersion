@@ -54,4 +54,26 @@ New version of task definition (Monolith-Definition-containersid:2)- pointing to
 Run the task - directly - (get it's public ip) - curl http://TASK_PUBLIC_IP_ADDRESS/mysfits
 check cloud watch - then stop the task
 
+---
+
+Lab03
+
 Update service to use the (Monolith-Definition-containersid:2) task definition
+
+----
+
+Lab04
+
+Edit mysfits.py - enable like route 
+
+rebuild docker image  for monolyth (with new like route) - push mono image with "nolike" tag
+also build the like image - and push to like registry
+
+New task definition for mono (with nolike image)  (Monolith-Definition-containersid:3)
+New take definition for like  (containersid-like-tN9a8V1mSrOA:1)
+
+Update mono service - to use task defn (Monolith-Definition-containersid:3)
+Create new service for like
+
+
+
