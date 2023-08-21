@@ -6,7 +6,7 @@ export TF_VAR_tn=$(aws dynamodb list-tables | jq -r '. | select(.TableNames[] | 
 export TF_VAR_cn=$(aws ecs list-clusters | jq -r '. | select(.clusterArns[] | contains("containersid")).clusterArns' | jq -r .[0] | rev | cut -f1 -d'/' | rev)
 export TF_VAR_sn=$(aws ecs list-services --cluster $TF_VAR_cn | jq -r '. | select(.serviceArns[] | contains("MythicalMonolithService")).serviceArns' | jq -r .[0] | rev | cut -f1 -d'/' | rev)
 export TF_VAR_ruri=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
-export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f2 -d'-')
+export TF_VAR_muid=$(echo $TF_VAR_lgn | cut -f3 -d'-')
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 echo "######"
