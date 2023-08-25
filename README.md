@@ -75,5 +75,44 @@ New take definition for like  (containersid-like-tN9a8V1mSrOA:1)
 Update mono service - to use task defn (Monolith-Definition-containersid:3)
 Create new service for like
 
+Lab05
+
+Install pre-reqs
+Temp creds off
+Launch cluster
+Test cluster
+[add console access]
+
+Lab06
+ALB controller provision
+K8s console [hmm]
+
+Lab07
+DynamoDB policy - for IRSA
+Service Account
+yaml for monolyth and deploy - includes service type LoadBalancer (port 80)
+curl 
+update index.html - use alb
+
+
+Lab08
+
+Edit mysfits.py - enable like route
+
+push monolyth nolike
+push like
+yamp nolike, like
+deploy
+Create ingress  - type alb / /like
+change index.html -> alb
+
+
+
+
+
+
+
+
+
 
 
