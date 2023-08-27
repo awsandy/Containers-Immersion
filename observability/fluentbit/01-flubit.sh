@@ -21,5 +21,5 @@ metadata:
 ---
 EOF
 
-kubectl apply -f serv-accounts.yaml
+#kubectl apply -f serv-accounts.yaml
 
