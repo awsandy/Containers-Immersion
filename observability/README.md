@@ -10,7 +10,8 @@ terraform apply
 
 deploys amazon/aws-otel-collector:v0.31.0
 
---------
+
+--------------------------------------------------------
 
 Fluentbit
 
