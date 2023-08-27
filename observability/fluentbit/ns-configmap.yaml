@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: amazon-cloudwatch
+  labels:
+    name: amazon-cloudwatch
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-general-configs ## you can use a different name, make sure to use the same in the following steps
+  namespace: amazon-cloudwatch
+data:
+  cluster.name: ${CLUSTERNAME}
+  http.port: ""
+  http.server: "Off"
+  logs.region: ${AWS_REGION}
+  read.head: "Off"
+  read.tail: "On"
