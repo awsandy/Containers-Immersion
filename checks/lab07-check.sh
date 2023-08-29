@@ -4,6 +4,13 @@ if [[ $? -eq 0 ]];then
 else
     echo "PASSED: check env vars sub in ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml"
 fi
+grep ':latest' ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml
+if [[ $? -ne 0 ]];then
+    echo "ERROR: latest tag not found in ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml"
+else
+    echo "PASSED: latest tag found in ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml"
+fi
+
 echo "Repo check"
 ./lab01-check.sh
 rn=$(aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono | tr -d '"')
