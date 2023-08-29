@@ -6,4 +6,11 @@ else
 fi
 echo "Repo check"
 ./lab01-check.sh
-mr=$(aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono | tr -d '"')
+rn=$(aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono | tr -d '"')
+rn=$(aws ecr describe-repositories | jq -r .repositories[].repositoryName | grep containersid-mono) 
+aws ecr describe-images --repository-name $rn | grep nolike > /dev/null
+if [[ $? -ne 0 ]];then
+    echo "ERROR: Can't find mono image nolike tag in ECR"
+else
+    echo "PASSED: mono image nolike tag found in ECR " 
+fi
