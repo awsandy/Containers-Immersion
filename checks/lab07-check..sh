@@ -6,3 +6,4 @@ else
 fi
 echo "Repo check"
 ./lab01-check.sh
+mr=$(aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono | tr -d '"')
