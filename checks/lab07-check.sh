@@ -7,9 +7,9 @@ fi
 echo "Repo check"
 ./lab01-check.sh
 rn=$(aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono | tr -d '"')
-aws ecr describe-images --repository-name $rn | grep nolike > /dev/null
+aws ecr describe-images --repository-name $rn | grep latest > /dev/null
 if [[ $? -ne 0 ]];then
-    echo "ERROR: Can't find mono image nolike tag in ECR"
+    echo "ERROR: Can't find mono image latest tag in ECR"
 else
-    echo "PASSED: mono image nolike tag found in ECR " 
+    echo "PASSED: mono image latest tag found in ECR " 
 fi
