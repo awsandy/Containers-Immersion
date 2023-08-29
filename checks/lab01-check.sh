@@ -9,11 +9,11 @@ aws ecr describe-repositories | jq .repositories[].repositoryName | grep contain
 if [[ $? -ne 0 ]]; then
     echo "ERROR: Can't find mono image in ECR"
 else
-    echo "PASSED: mono image in ECR "  
+    echo "PASSED: mono repo in ECR "  
 fi
 aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-like  > /dev/null
 if [[ $? -ne 0 ]]; then
     echo "ERROR: Can't find like image in ECR"
 else
-    echo "PASSED: like image in ECR "  
+    echo "PASSED: like repo in ECR "  
 fi
