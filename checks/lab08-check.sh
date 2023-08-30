@@ -7,9 +7,9 @@ else
 fi
 grep 'def fulfillLikeMysfit(mysfit_id):' ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/service/mythicalMysfitsService.py | grep '#'
 if [[ $? -eq 0 ]]; then
-    echo "ERROR: app.route fullfill-like still commented in mythicalMysfitsService.py"
+    echo "ERROR: def fulfillLikeMysfit still commented in mythicalMysfitsService.py"
 else
-    echo "PASSED: app.route fullfill-like uncommented in mythicalMysfitsService.py"
+    echo "PASSED: def fulfillLikeMysfit uncommented in mythicalMysfitsService.py"
 fi
 ## check monolyth now has nolike tag - as like now implemented elsewhere
 aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono > /dev/null
