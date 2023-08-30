@@ -16,7 +16,7 @@ aws ecr describe-repositories | jq .repositories[].repositoryName | grep contain
 if [[ $? -ne 0 ]]; then
     echo "ERROR: Can't find mono repo in ECR"
 else
-    echo "PASSED: mono rewpo in ECR "  
+    echo "PASSED: mono repo in ECR "  
 fi
 rn=$(aws ecr describe-repositories | jq -r .repositories[].repositoryName | grep containersid-mono) 
 aws ecr describe-images --repository-name $rn | grep nolike > /dev/null
