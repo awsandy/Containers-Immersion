@@ -41,9 +41,9 @@ fi
 # check manifest /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/nolikeservice-app.yaml
 grep containersid-mono /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/nolikeservice-app.yaml | grep nolike > /dev/null
 if [[ $? -ne 0 ]];then
-    echo "ERROR: Can't find nolike image in manifest workshop-1/nolikeservice-app.yaml "
+    echo "ERROR: Can't find mono nolike image in manifest workshop-1/nolikeservice-app.yaml "
 else
-    echo "PASSED: Found nolike image in manifest workshop-1/nolikeservice-app.yaml " 
+    echo "PASSED: Found mono nolike image in manifest workshop-1/nolikeservice-app.yaml " 
 fi
 #check manifest /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/likeservice-app.yaml
 grep containersid-like /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/likeservice-app.yaml | grep latest > /dev/null
