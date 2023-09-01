@@ -17,14 +17,14 @@ aws s3 cp index.html s3://${BUCKET_NAME}/
 #s1=$(grep value likeservice-app.yaml.orig | cut -f2 -d':' | tr -d ' ')
 #comm=$(printf "sed 's/%s/%s/' likeservice-app.yaml.orig > likeservice-app.yaml" $s1 $ALB)
 #echo $comm
-#grep $ALB likeservice-app.yaml
-#if [[ $? -eq 0 ]];then
-#    echo "ALB sub ok - applying service"
-#    kubectl apply -f likeservice-app.yaml
-#else
-#    echo "ALB substitution $ALB may have failed in likeservice-app.yaml - exit"
-#    exit
-#fi
+grep $ALB ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/likeservice-app.yaml
+if [[ $? -eq 0 ]];then
+    echo "ALB sub ok - applying service"
+    kubectl apply -f likeservice-app.yaml
+else
+    echo "ALB substitution $ALB may have failed in likeservice-app.yaml - exit"
+    exit
+fi
 hc=0
 while [[ $hc -lt 6 ]];do
 sleep 10
