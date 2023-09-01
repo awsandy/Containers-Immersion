@@ -1,5 +1,10 @@
 rm -f ~/.kube/config/
 rm -rf ~/.kube/cache/
+tc=$(aws cloud9 describe-environments --environment-id $C9_PID --query environments[0].managedCredentialsStatus --output text)
+if [[ $tc != "DISABLED_BY_OWNER" ]];then
+  echo "ERROR: Cloud9 Temporary credentials are not disabled - exiting"
+  exit
+fi
 sc=$(aws cloudformation list-stacks | jq -r '.StackSummaries[] | select(.StackName=="eksctl-mythicaleks-eksctl-cluster").StackStatus' | wc -l)
 if [[ $sc -gt 0 ]];then
   ss=$(aws cloudformation list-stacks | jq -r '.StackSummaries[] | select(.StackName=="eksctl-mythicaleks-eksctl-cluster").StackStatus')

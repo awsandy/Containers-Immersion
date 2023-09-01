@@ -28,9 +28,9 @@ cd lab04-microservices
 cd ~/environment/Containers-Immersion
 ./check-lab04.sh
 cd lab05-eks-cluster
-./00*
 ./01*
 ./02*
+./03*
 cd ~/environment/Containers-Immersion
 ./check-lab05.sh
 cd lab06-loadbalancer
