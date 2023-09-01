@@ -17,6 +17,8 @@ eksctl create iamserviceaccount \
 
 kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
 echo "helm install"
+#
+# enableServiceMutatorWebhook=false required for backward compatibility
 helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
   --set clusterName=mythicaleks-eksctl \
