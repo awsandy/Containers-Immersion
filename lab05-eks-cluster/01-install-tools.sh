@@ -25,4 +25,5 @@ aws sts get-caller-identity --query Arn | grep TeamRole
 if [[ $? -ne 0 ]];then
     echo "Check AWS temporary switch - and EC2 assigned to TeamRole"
 fi
+aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material file://~/.ssh/id_rsa.pub 2> /dev/null
 
