@@ -19,7 +19,7 @@ aws elbv2 create-target-group \
               --protocol HTTP \
               --port 80 \
               --target-type ip \
-              --vpc-id $vpcid 
+              --vpc-id $vpcid  --output text
 
 lbarn=$(aws elbv2 describe-load-balancers --query LoadBalancers[].LoadBalancerArn | jq -r .[])
 tgarn=$(aws elbv2 describe-target-groups --names mysfits-like-target --query TargetGroups[].TargetGroupArn | jq -r .[])
@@ -42,7 +42,7 @@ aws elbv2 create-rule \
               --listener-arn ${lnarn} \
               --priority 1 \
               --conditions file://conditions-pattern.json \
-              --actions Type=forward,TargetGroupArn=${tgarn}
+              --actions Type=forward,TargetGroupArn=${tgarn} --output text
 
 
 # create like service - inject IP's form mysfits-like into target group
@@ -70,4 +70,4 @@ aws ecs  create-service --cluster $TF_VAR_cn --service-name mysfits-like-service
 --launch-type FARGATE \
 --platform-version LATEST \
 --network-configuration "awsvpcConfiguration={subnets=[$sub1],securityGroups=[$sg1],assignPublicIp=ENABLED}" \
---cli-input-json file://service-elb.json -output text
+--cli-input-json file://service-elb.json --output text
