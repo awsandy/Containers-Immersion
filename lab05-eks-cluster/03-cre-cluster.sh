@@ -15,7 +15,7 @@ if [[ $sc -gt 0 ]];then
   fi
   (echo $ss | grep CREATE_COMPLETE) > /dev/null
   if [[ $? -eq 0 ]];then
-    echo "found previous eksctl-mythicaleks stack set that needs cleaning up state = $ss - exiting"
+    echo "found previous eksctl-mythicaleks stack set that needs cleaning up state = CREATE_COMPLETE - exiting"
     exit
   fi
 fi
