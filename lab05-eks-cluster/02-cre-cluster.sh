@@ -1,5 +1,15 @@
 rm -f ~/.kube/config/
 rm -rf ~/.kube/cache/
+sc=$(aws cloudformation list-stacks | jq -r '.StackSummaries[] | select(.StackName=="eksctl-mythicaleks-eksctl-cluster").StackStatus' | wc -l)
+if [[ $sc -gt 0 ]];then
+  ss=$(aws cloudformation list-stacks | jq -r '.StackSummaries[] | select(.StackName=="eksctl-mythicaleks-eksctl-cluster").StackStatus')
+  echo $ss | grep -v DELETE_COMPLETE > /dev/null
+  if [[ $? -ne 0 ]];then
+    echo "found previous eksctl-mythicaleks stack set that needs cleaning up - exiting"
+    exit
+  fi
+fi
+
 export AWS_REGION=$(aws configure get region)
 echo $AWS_REGION
 cat << EOF > mythicaleks.yaml
