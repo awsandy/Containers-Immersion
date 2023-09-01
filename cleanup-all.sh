@@ -14,8 +14,9 @@ if [[ $i != *"Monolith-Definition-containersid:1" ]];then
 aws ecs deregister-task-definition --task-definition $i
 fi
 done
+echo "delete EKS nodegroup"
 eksctl delete nodegroup --cluster mythicaleks-eksctl --name nodegroup || true
-aws cloudformation wait stack-delete-complete \
-    --stack-name 
+#aws cloudformation wait stack-delete-complete  --stack-name 
+echo "delete EKS cluster"
 eksctl delete cluster --name mythicaleks-eksctl || true
 (docker images -q | xargs docker rmi || true) 2> /dev/null
