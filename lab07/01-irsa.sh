@@ -29,5 +29,4 @@ eksctl create iamserviceaccount \
 		--name=mythical-misfit \
 		--attach-policy-arn=$PolicyARNDynamoDB \
 		--override-existing-serviceaccounts \
-		--approve --output text
-
+		--approve
