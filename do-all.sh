@@ -34,7 +34,7 @@ cd lab05-eks-cluster
 cd ~/environment/Containers-Immersion
 ./check-lab05.sh
 cd lab06-loadbalancer
-./02*
+./01*
 cd ~/environment/Containers-Immersion
 ./check-lab06.sh
 cd lab07
