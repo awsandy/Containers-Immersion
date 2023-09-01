@@ -40,18 +40,18 @@ else
     echo "PASSED: like image found in ECR repo $rn " 
 fi
 # check manifest /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/nolikeservice-app.yaml
-grep containersid-mono /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/nolikeservice-app.yaml | grep nolike > /dev/null
+grep containersid-mono nolikeservice-app.yaml | grep nolike > /dev/null
 if [[ $? -ne 0 ]];then
-    echo "ERROR: Can't find mono nolike image in manifest workshop-1/nolikeservice-app.yaml "
+    echo "ERROR: Can't find mono nolike image in manifest nolikeservice-app.yaml "
 else
-    echo "PASSED: Found mono nolike image in manifest workshop-1/nolikeservice-app.yaml " 
+    echo "PASSED: Found mono nolike image in manifest nolikeservice-app.yaml " 
 fi
 #check manifest /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/likeservice-app.yaml
-grep containersid-like /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/likeservice-app.yaml | grep latest > /dev/null
+grep containersid-like likeservice-app.yaml | grep latest > /dev/null
 if [[ $? -ne 0 ]];then
-    echo "ERROR: Can't find like image in manifest workshop-1/likeservice-app.yaml "
+    echo "ERROR: Can't find like image in manifest likeservice-app.yaml "
 else
-    echo "PASSED: Found like image in manifest workshop-1/likeservice-app.yaml " 
+    echo "PASSED: Found like image in manifest likeservice-app.yaml " 
 fi
 cd ~/environment/Containers-Immersion 
 
