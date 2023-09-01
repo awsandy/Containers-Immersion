@@ -5,14 +5,17 @@ if [[ $? -eq 0 ]]; then
         echo "ERROR: check env vars sub in ~/environment/mythicaleks.yaml (or ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml)"
     fi
 else
-    echo "PASSED: check env vars sub in ~/environment/mythicaleks.yaml"
+    echo "PASSED: check env vars sub in ~/environment/mythicaleks.yaml (or ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml)"
 fi
 reg=$(aws configure get region)
 grep $reg ~/environment/mythicaleks.yaml
 if [[ $? -ne 0 ]]; then
-    echo "ERROR: no region $reg in ~/environment/mythicaleks.yaml"
+    grep $reg ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml 2>/dev/null
+    if [[ $? -ne 0 ]]; then
+        echo "ERROR: no region $reg  in ~/environment/mythicaleks.yaml (or ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml)"
+    fi
 else
-    echo "PASSED: region $reg in ~/environment/mythicaleks.yaml"
+    echo "PASSED: region $reg in ~/environment/mythicaleks.yaml (or ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml)"
 fi
 nc=$(kubectl get nodes | grep Ready | wc -l)
 if [[ $nc -lt 3 ]]; then
