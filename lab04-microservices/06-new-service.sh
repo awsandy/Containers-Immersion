@@ -70,4 +70,4 @@ aws ecs  create-service --cluster $TF_VAR_cn --service-name mysfits-like-service
 --launch-type FARGATE \
 --platform-version LATEST \
 --network-configuration "awsvpcConfiguration={subnets=[$sub1],securityGroups=[$sg1],assignPublicIp=ENABLED}" \
---cli-input-json file://service-elb.json
+--cli-input-json file://service-elb.json -output text

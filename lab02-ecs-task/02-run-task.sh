@@ -8,4 +8,4 @@ echo $sg1
 aws ecs run-task --cluster $TF_VAR_cn \
     --task-definition $tdarn \
     --launch-type FARGATE \
-    --network-configuration "awsvpcConfiguration={subnets=[$sub1],securityGroups=[$sg1],assignPublicIp=ENABLED}"
+    --network-configuration "awsvpcConfiguration={subnets=[$sub1],securityGroups=[$sg1],assignPublicIp=ENABLED}" --output text
