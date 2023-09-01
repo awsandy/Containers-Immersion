@@ -31,7 +31,11 @@ EOF
 
 kubectl apply -f mythical-ingress.yaml
 kubectl get ingress/mythical-mysfits-eks
+kubectl get ingress/mythical-mysfits-eks | grep elb.amazonaws.com > /dev/null
+while [[ $? -ne 0 ]];do
 echo "sleeping 15 ...."
 sleep 15
+kubectl get ingress/mythical-mysfits-eks | grep elb.amazonaws.com > /dev/null
+done
 echo "check some logs"
 kubectl logs -n kube-system deployments/aws-load-balancer-controller

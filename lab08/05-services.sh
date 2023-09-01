@@ -12,19 +12,19 @@ comm=$(printf "sed 's/REPLACE_ME_API_ENDPOINT/http:\/\/%s/' index.html.orig > in
 echo $comm
 eval $comm
 grep mysfitsApiEndpoint index.html | grep '.com'
-aws s3 cp index.html s3://${BUCKET_NAME}/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-cp likeservice-app.yaml likeservice-app.yaml.orig
-s1=$(grep value likeservice-app.yaml.orig | cut -f2 -d':' | tr -d ' ')
-comm=$(printf "sed 's/%s/%s/' likeservice-app.yaml.orig > likeservice-app.yaml" $s1 $ALB)
-echo $comm
-grep $ALB likeservice-app.yaml
-if [[ $? -eq 0 ]];then
-    echo "ALB sub ok - applying service"
-    kubectl apply -f likeservice-app.yaml
-else
-    echo "ALB substitution $ALB may have failed in likeservice-app.yaml - exit"
-    exit
-fi
+aws s3 cp index.html s3://${BUCKET_NAME}/
+#cp likeservice-app.yaml likeservice-app.yaml.orig
+#s1=$(grep value likeservice-app.yaml.orig | cut -f2 -d':' | tr -d ' ')
+#comm=$(printf "sed 's/%s/%s/' likeservice-app.yaml.orig > likeservice-app.yaml" $s1 $ALB)
+#echo $comm
+#grep $ALB likeservice-app.yaml
+#if [[ $? -eq 0 ]];then
+#    echo "ALB sub ok - applying service"
+#    kubectl apply -f likeservice-app.yaml
+#else
+#    echo "ALB substitution $ALB may have failed in likeservice-app.yaml - exit"
+#    exit
+#fi
 hc=0
 while [[ $hc -lt 6 ]];do
 sleep 10
