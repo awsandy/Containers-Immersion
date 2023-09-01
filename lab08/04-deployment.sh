@@ -1,4 +1,5 @@
 . ~/.bash_profile
+cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
 echo  ${MONO_ECR_REPOSITORY_URI}
 echo ${TABLE_NAME}
 echo ${AWS_REGION}
@@ -51,6 +52,7 @@ spec:
 EOF
 
 export LIKE_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep like)
+
 cat << EOF > likeservice-app.yaml
 apiVersion: apps/v1
 kind: Deployment

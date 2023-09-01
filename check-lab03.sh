@@ -12,3 +12,4 @@ curl -s $TF_VAR_lb/mysfits | grep haetae > /dev/null
 done
 echo "success"
 curl $TF_VAR_lb/mysfits
+cd ~/environment/Containers-Immersion 

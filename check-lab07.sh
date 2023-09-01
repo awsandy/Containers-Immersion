@@ -1,10 +1,11 @@
-grep '${' ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml
+cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
+grep '${' monolith-app.yaml
 if [[ $? -eq 0 ]];then
     echo "ERROR: check env vars sub in ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml"
 else
     echo "PASSED: check env vars sub in ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml"
 fi
-grep ':latest' ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml
+grep ':latest' monolith-app.yaml
 if [[ $? -ne 0 ]];then
     echo "ERROR: latest tag not found in ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml"
 else
@@ -20,3 +21,4 @@ if [[ $? -ne 0 ]];then
 else
     echo "PASSED: mono image latest tag found in ECR " 
 fi
+cd ~/environment/Containers-Immersion 

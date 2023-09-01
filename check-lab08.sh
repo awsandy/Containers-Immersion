@@ -1,4 +1,5 @@
 echo "check edits"
+cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
 grep 'app.route("/mysfits/<mysfit_id>/fulfill-like' ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/service/mythicalMysfitsService.py | grep '#'
 if [[ $? -eq 0 ]]; then
     echo "ERROR: app.route fullfill-like still commented in mythicalMysfitsService.py"
@@ -52,4 +53,5 @@ if [[ $? -ne 0 ]];then
 else
     echo "PASSED: Found like image in manifest workshop-1/likeservice-app.yaml " 
 fi
+cd ~/environment/Containers-Immersion 
 

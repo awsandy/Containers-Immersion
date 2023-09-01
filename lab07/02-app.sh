@@ -1,4 +1,5 @@
 . ~/.bash_profile
+cd /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
 cat << EOF > monolith-app.yaml
 apiVersion: apps/v1
 kind: Deployment

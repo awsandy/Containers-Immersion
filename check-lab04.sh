@@ -38,3 +38,4 @@ if [[ $? -ne 0 ]];then
 else
     echo "PASSED: like image found in ECR repo $rn " 
 fi
+cd ~/environment/Containers-Immersion 

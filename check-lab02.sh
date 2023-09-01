@@ -19,3 +19,4 @@ if [[ $? -ne 0 ]]; then
 else
     echo "PASSED: found containersid-mono ECR image in modified task definition"
 fi
+cd ~/environment/Containers-Immersion 

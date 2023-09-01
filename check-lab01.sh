@@ -17,3 +17,4 @@ if [[ $? -ne 0 ]]; then
 else
     echo "PASSED: like repo in ECR "  
 fi
+cd ~/environment/Containers-Immersion 

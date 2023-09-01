@@ -1,3 +1,4 @@
+cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
 cat << EOF > mythical-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress

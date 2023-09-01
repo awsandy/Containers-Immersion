@@ -1,5 +1,6 @@
 rm -f ~/.kube/config/
 rm -rf ~/.kube/cache/
+
 tc=$(aws cloud9 describe-environments --environment-id $C9_PID --query environments[0].managedCredentialsStatus --output text)
 if [[ $tc != "DISABLED_BY_OWNER" ]];then
   echo "ERROR: Cloud9 Temporary credentials are not disabled - exiting"
@@ -22,7 +23,7 @@ fi
 
 export AWS_REGION=$(aws configure get region)
 echo $AWS_REGION
-cat << EOF > mythicaleks.yaml
+cat << EOF > ~/environment/mythicaleks.yaml
 ---
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
@@ -49,8 +50,9 @@ managedNodeGroups:
 EOF
 
 
-eksctl create cluster -f mythicaleks.yaml
+eksctl create cluster -f ~/environment/mythicaleks.yaml
 aws eks update-kubeconfig --name mythicaleks-eksctl
 kubectl get nodes
 helm repo add eks https://aws.github.io/eks-charts
+echo "add OIDC"
 eksctl utils associate-iam-oidc-provider --cluster=mythicaleks-eksctl --approve
