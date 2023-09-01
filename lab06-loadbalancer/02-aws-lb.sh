@@ -21,6 +21,7 @@ helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
   --set clusterName=mythicaleks-eksctl \
   --set serviceAccount.create=false \
+  --set enableServiceMutatorWebhook=false \
   --set serviceAccount.name=aws-load-balancer-controller
 echo "sleep 10 ...."
 sleep 10
