@@ -25,7 +25,10 @@ cd lab04-microservices
 ./06*
 cd ~/environment/Containers-Immersion
 ./check-lab04.sh
-
+cd lab05-eks-cluster
+./00*
+./01*
+./02*
 cd ~/environment/Containers-Immersion
 ./check-lab05.sh
 
