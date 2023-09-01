@@ -13,6 +13,11 @@ if [[ $sc -gt 0 ]];then
     echo "found previous eksctl-mythicaleks stack set that needs cleaning up state = $ss - exiting"
     exit
   fi
+  (echo $ss | grep CREATE_COMPLETE) > /dev/null
+  if [[ $? -eq 0 ]];then
+    echo "found previous eksctl-mythicaleks stack set that needs cleaning up state = $ss - exiting"
+    exit
+  fi
 fi
 
 export AWS_REGION=$(aws configure get region)
