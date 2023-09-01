@@ -1,3 +1,4 @@
+rm -f ~/.kube/config
 export AWS_REGION=$(aws configure get region)
 echo $AWS_REGION
 cat << EOF > mythicaleks.yaml
