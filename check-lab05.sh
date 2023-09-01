@@ -8,9 +8,9 @@ else
     echo "PASSED: check env vars sub in ~/environment/mythicaleks.yaml (or ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml)"
 fi
 reg=$(aws configure get region)
-grep $reg ~/environment/mythicaleks.yaml
+grep $reg ~/environment/mythicaleks.yaml 2> /dev/null
 if [[ $? -ne 0 ]]; then
-    grep $reg ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml 2>/dev/null
+    grep $reg ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml > /dev/null
     if [[ $? -ne 0 ]]; then
         echo "ERROR: no region $reg  in ~/environment/mythicaleks.yaml (or ~/environment/Containers-Immersion/lab05-eks-cluster/mythicaleks.yaml)"
     fi
