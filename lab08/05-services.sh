@@ -20,7 +20,7 @@ aws s3 cp index.html s3://${BUCKET_NAME}/
 grep $ALB ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/likeservice-app.yaml
 if [[ $? -eq 0 ]];then
     echo "ALB sub ok - applying service"
-    kubectl apply -f likeservice-app.yaml
+    kubectl apply -f ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/likeservice-app.yaml
 else
     echo "ALB substitution $ALB may have failed in likeservice-app.yaml - exit"
     exit
