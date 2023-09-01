@@ -1,8 +1,5 @@
-source ~/.bash_profile
-
 # ------  resize OS disk -----------
-
-# Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
+# Specify the desired volume size in GiB as a command-line argument. If not specified, default to 32 GiB.
 VOLUME_SIZE=${1:-32}
 
 # Get the ID of the environment host Amazon EC2 instance.
@@ -15,7 +12,7 @@ VOLUME_ID=$(aws ec2 describe-instances \
   --output text)
 
 # Resize the EBS volume.
-aws ec2 modify-volume --volume-id $VOLUME_ID --size $VOLUME_SIZE
+aws ec2 modify-volume --volume-id $VOLUME_ID --size $VOLUME_SIZE > /dev/null
 
 # Wait for the resize to finish.
 while [ \
@@ -33,14 +30,17 @@ then
   sudo growpart /dev/xvda 1
  
   # Expand the size of the file system.
-  sudo resize2fs /dev/xvda1
+  sudo resize2fs /dev/xvda1 > /dev/null
 
 else
   # Rewrite the partition table so that the partition takes up all the space that it can.
   sudo growpart /dev/nvme0n1 1
 
   # Expand the size of the file system.
-  # sudo resize2fs /dev/nvme0n1p1 #(Amazon Linux 1)
-  sudo xfs_growfs /dev/nvme0n1p1 #(Amazon Linux 2)
+  sudo resize2fs /dev/nvme0n1p1 &> /dev/null #(Amazon Linux 1)
+  sudo xfs_growfs /dev/nvme0n1p1 &> /dev/null #(Amazon Linux 2)
 fi
+df -m /
+
+
 
