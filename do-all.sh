@@ -31,13 +31,26 @@ cd lab05-eks-cluster
 ./02*
 cd ~/environment/Containers-Immersion
 ./check-lab05.sh
-
+cd lab06-loadbalancer
+./02*
 cd ~/environment/Containers-Immersion
 ./check-lab06.sh
-
+cd lab07
+./01*
+./02*
+./03*
+./04*
+./05*
 cd ~/environment/Containers-Immersion
 ./check-lab07.sh
-
+./lab07/99-cleanup.sh
+cd lab08
+./01*
+./02*
+./03*
+./04*
+./05*
+./06*
 cd ~/environment/Containers-Immersion
 ./check-lab08.sh
 echo "Done"
