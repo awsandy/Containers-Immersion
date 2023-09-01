@@ -5,7 +5,7 @@ if [[ $sc -gt 0 ]];then
   ss=$(aws cloudformation list-stacks | jq -r '.StackSummaries[] | select(.StackName=="eksctl-mythicaleks-eksctl-cluster").StackStatus')
   echo $ss | grep -v DELETE_COMPLETE > /dev/null
   if [[ $? -ne 0 ]];then
-    echo "found previous eksctl-mythicaleks stack set that needs cleaning up - exiting"
+    echo "found previous eksctl-mythicaleks stack set that needs cleaning up state = $ss - exiting"
     exit
   fi
 fi
