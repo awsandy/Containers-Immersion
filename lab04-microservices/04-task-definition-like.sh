@@ -62,5 +62,5 @@ aws ecs register-task-definition --family containersid-like-${TF_VAR_muid} --net
 --execution-role-arn ${TF_VAR_esr} \
 --requires-compatibilities FARGATE \
 --cpu 256 \
---memory 512 --container-definitions file://like-container.json
+--memory 512 --container-definitions file://like-container.json --output text
 

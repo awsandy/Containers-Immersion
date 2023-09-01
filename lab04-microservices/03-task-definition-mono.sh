@@ -69,6 +69,6 @@ aws ecs register-task-definition --family Monolith-Definition-containersid --net
 --execution-role-arn ${TF_VAR_esr} \
 --requires-compatibilities FARGATE \
 --cpu 256 \
---memory 512 --container-definitions file://mono-container.json
+--memory 512 --container-definitions file://mono-container.json --output text
 
 
