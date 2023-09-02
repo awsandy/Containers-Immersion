@@ -25,8 +25,12 @@ kubectl delete deployment mythical-mysfits-nolike
 kubectl get ingress/mythical-mysfits-eks
 lbs=$(aws elbv2 describe-load-balancers --query LoadBalancers[].LoadBalancerArn | jq -r .[] | grep mythical)
 for i in $lbs;do
-echo $i
 aws elbv2 delete-load-balancer --load-balancer-arn $i
+done
+sgs=$(aws ec2 describe-security-groups --query SecurityGroups[] | jq -r '.[] | select(.GroupName | contains("mythical")).GroupId')
+for i in $sgs;do
+# get sg groupid
+aws ec2 delete-security-group --group-id $i
 done
 echo "delete EKS addons"
 eksctl delete iamserviceaccount \
