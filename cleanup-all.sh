@@ -16,8 +16,10 @@ fi
 done
 echo "delete EKS nodegroup"
 eksctl delete nodegroup --cluster mythicaleks-eksctl --name nodegroup || true
+echo "Waiting for stack set eksctl-mythicaleks-eksctl-nodegroup-nodegroup"
 aws cloudformation wait stack-delete-complete  --stack-name eksctl-mythicaleks-eksctl-nodegroup-nodegroup
 echo "delete EKS cluster"
 eksctl delete cluster --name mythicaleks-eksctl || true
+echo "Waiting for stack set eksctl-mythicaleks-eksctl
 aws cloudformation wait stack-delete-complete  --stack-name eksctl-mythicaleks-eksctl
 (docker images -q | xargs docker rmi || true) 2> /dev/null
