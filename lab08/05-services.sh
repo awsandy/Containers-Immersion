@@ -12,7 +12,14 @@ comm=$(printf "sed 's/REPLACE_ME_API_ENDPOINT/http:\/\/%s/' index.html.orig > in
 echo $comm
 eval $comm
 grep mysfitsApiEndpoint index.html | grep '.com'
+BUCKET_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.SiteBucket')"
+
+
 aws s3 cp index.html s3://${BUCKET_NAME}/
+if [[ $? -ne 0 ]];then
+    echo "ERROR: Failer to copy to bucket $BUCKET_NAME"
+    exit
+fi
 #cp likeservice-app.yaml likeservice-app.yaml.orig
 #s1=$(grep value likeservice-app.yaml.orig | cut -f2 -d':' | tr -d ' ')
 #comm=$(printf "sed 's/%s/%s/' likeservice-app.yaml.orig > likeservice-app.yaml" $s1 $ALB)
