@@ -14,6 +14,15 @@ if [[ $i != *"Monolith-Definition-containersid:1" ]];then
 aws ecs deregister-task-definition --task-definition $i
 fi
 done
+echo "delete EKS addons"
+eksctl delete iamserviceaccount \
+  --cluster=mythicaleks-eksctl \
+  --namespace=kube-system \
+  --name=aws-load-balancer-controller
+eksctl create iamserviceaccount \
+		--cluster=mythicaleks-eksctl \
+		--namespace=default \
+		--name=mythical-misfit
 echo "delete EKS nodegroup"
 eksctl delete nodegroup --cluster mythicaleks-eksctl --name nodegroup || true
 echo "Waiting for stack set eksctl-mythicaleks-eksctl-nodegroup-nodegroup"
