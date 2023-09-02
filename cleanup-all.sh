@@ -33,11 +33,18 @@ eksctl delete iamserviceaccount \
     --namespace=default \
     --name=mythical-misfit
 echo "delete EKS nodegroup"
-eksctl delete nodegroup --cluster mythicaleks-eksctl --name nodegroup || true
-echo "Waiting for stack set eksctl-mythicaleks-eksctl-nodegroup-nodegroup"
-aws cloudformation wait stack-delete-complete --stack-name eksctl-mythicaleks-eksctl-nodegroup-nodegroup
+eksctl delete nodegroup --cluster mythicaleks-eksctl --name nodegroup
+if [[ $? -ne 0 ]]; then
+    aws cloudformation delete-stack --stack-name eksctl-mythicaleks-eksctl-nodegroup-nodegroup
+    echo "Waiting for stack set eksctl-mythicaleks-eksctl-nodegroup-nodegroup"
+    aws cloudformation wait stack-delete-complete --stack-name eksctl-mythicaleks-eksctl-nodegroup-nodegroup
+fi
 echo "delete EKS cluster"
-eksctl delete cluster --name mythicaleks-eksctl || true
-echo "Waiting for stack set eksctl-mythicaleks-eksctl"
-aws cloudformation wait stack-delete-complete --stack-name eksctl-mythicaleks-eksctl
+eksctl delete cluster --name mythicaleks-eksctl
+if [[ $? -ne 0 ]]; then
+    aws cloudformation delete-stack --stack-name eksctl-mythicaleks-eksctl
+    echo "Waiting for stack set eksctl-mythicaleks-eksctl"
+    aws cloudformation wait stack-delete-complete --stack-name eksctl-mythicaleks-eksctl
+fi
 
+# delete the stacks anyway
