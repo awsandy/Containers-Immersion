@@ -28,7 +28,7 @@ eksctl delete iamserviceaccount \
     --cluster=mythicaleks-eksctl \
     --namespace=kube-system \
     --name=aws-load-balancer-controller
-eksctl create iamserviceaccount \
+eksctl delete iamserviceaccount \
     --cluster=mythicaleks-eksctl \
     --namespace=default \
     --name=mythical-misfit
