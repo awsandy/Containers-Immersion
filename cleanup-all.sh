@@ -42,9 +42,9 @@ fi
 echo "delete EKS cluster"
 eksctl delete cluster --name mythicaleks-eksctl
 if [[ $? -ne 0 ]]; then
-    aws cloudformation delete-stack --stack-name eksctl-mythicaleks-eksctl
-    echo "Waiting for stack set eksctl-mythicaleks-eksctl"
-    aws cloudformation wait stack-delete-complete --stack-name eksctl-mythicaleks-eksctl
+    aws cloudformation delete-stack --stack-name eksctl-mythicaleks-eksctl-cluster
+    echo "Waiting for stack set eksctl-mythicaleks-eksctl-cluster"
+    aws cloudformation wait stack-delete-complete --stack-name eksctl-mythicaleks-eksctl-cluster
 fi
 
 # delete the stacks anyway
