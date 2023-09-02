@@ -23,6 +23,11 @@ echo "delete EKS manifestes etc.."
 kubectl delete deployment mythical-mysfits-like
 kubectl delete deployment mythical-mysfits-nolike
 kubectl get ingress/mythical-mysfits-eks
+lbs=$(aws elbv2 describe-load-balancers --query LoadBalancers[].LoadBalancerArn | jq -r .[] | grep mythical)
+for i in $lbs;do
+echo $i
+aws elbv2 delete-load-balancer --load-balancer-arn $i
+done
 echo "delete EKS addons"
 eksctl delete iamserviceaccount \
     --cluster=mythicaleks-eksctl \
