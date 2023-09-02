@@ -13,7 +13,7 @@ cd lab02-ecs-task
 ./02-run-task.sh
 cd ~/environment/Containers-Immersion
 ./check-lab02.sh
-cd lab02-ecs-scale
+cd lab03-ecs-scale
 ./01*
 ./02*
 cd ~/environment/Containers-Immersion
