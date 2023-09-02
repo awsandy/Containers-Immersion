@@ -13,8 +13,6 @@ echo $comm
 eval $comm
 grep mysfitsApiEndpoint index.html | grep '.com'
 BUCKET_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.SiteBucket')"
-
-
 aws s3 cp index.html s3://${BUCKET_NAME}/
 if [[ $? -ne 0 ]];then
     echo "ERROR: Failer to copy to bucket $BUCKET_NAME"
