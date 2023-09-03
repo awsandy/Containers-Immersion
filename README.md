@@ -15,9 +15,8 @@ The scripts `check-labX.sh` will run some tests to check the participant has don
 
 ## Known issues with lab:
 
-* Without any actions you will run out of space on the root filesystem just after lab 5 fix:
+* Without any actions you will run out of space on the root filesystem just after lab 5. To fix either:
 
-Either:
 * * run `./00-setup/02-resize-osdisk.sh` - which will rezie root disk to 32GB (no reboot required)
 * * or just before you start lab 5 run `(docker images -q | xargs docker rmi || true) 2> /dev/null`
 
