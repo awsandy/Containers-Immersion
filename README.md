@@ -4,6 +4,8 @@
 
 The scripts `check-labXX.sh` will run some tests to check the participant has done the requested steps for each lab.
 
+`lab0-setup.sh` - does all the setup and applies the root disk resize fix (see known issues below)
+
 `labX.sh` - will build the repective X lab from the workshop and run the tests
 
 `cleanup-all.sh` will take the participants environment back to the begining state of the lab.
@@ -29,6 +31,16 @@ ECR: containersid-like-8vloc4ntgy1t  (empty)
 ECR: containersid-mono-cxdsl3ptepdt  (empty)
 
 ----
+
+## Known issues with lab:
+
+Without any actions you will run out of space just after lab 5 fix:
+
+Either:
+
+* run 00-setup/02-resize-osdisk.sh - will rezie root disk to 32GB (no reboot required)
+* or just before you start lab 5 run `(docker images -q | xargs docker rmi || true) 2> /dev/null`
+
 -----
 
 # The Labs
