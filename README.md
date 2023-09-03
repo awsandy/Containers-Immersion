@@ -7,6 +7,7 @@ The scripts `check-labX.sh` will run some tests to check the participant has don
 The lab* scripts will fast forward a participant (or a facilitator) to help them catch up:
 
 `lab0-setup.sh` - does all the setup and applies the root disk resize fix (see known issues below)
+
 `labX.sh` - will build the repective X lab from the workshop and run the tests
 
 Cleanup/reset
