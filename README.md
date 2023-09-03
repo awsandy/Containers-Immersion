@@ -8,7 +8,7 @@ The scripts `check-labXX.sh` will run some tests to check the participant has do
 
 `labX.sh` - will build the repective X lab from the workshop and run the tests
 
-`cleanup-all.sh` will take the participants environment back to the begining state of the lab.
+`cleanup-all.sh` will take the participants environment back to the beginning state of the lab.
 
 
 ----
