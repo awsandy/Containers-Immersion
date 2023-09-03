@@ -11,11 +11,9 @@ The scripts `check-labXX.sh` will run some tests to check the participant has do
 
 -------
 
+## The workshop default environment
 
-
-OOTB the workshop provisions:
-
-Stack: containersid
+OOTB the workshop provisions stack set: `containersid`
 
 * VPC,subnets, routes, NatGW, an instance profile
 * ECS Service, ECS TaskDefinition, Load balancer & target group
