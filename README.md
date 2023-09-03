@@ -61,6 +61,8 @@ ECR: containersid-mono-cxdsl3ptepdt  (empty)
 
 Docker practice commands
 
+----
+
 ## LAB01 - docker stuff
 
 Populates mono repo with one image 
