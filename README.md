@@ -1,4 +1,4 @@
-# Containers-Immersion
+# AWS Containers Immersion Day
 
 ## Helper scripts for aws staff facilitating the workshop
 
