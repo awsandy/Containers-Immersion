@@ -55,7 +55,8 @@ ECR: containersid-mono-cxdsl3ptepdt  (empty)
 
 -----
 
-# The Labs
+## The Labs
+
 
 ## Docker basics
 
@@ -96,7 +97,7 @@ Create new service for like
 
 ----
 
-# Lab05 - Build EKS Cluster
+## Lab05 - Build EKS Cluster
 
 Install pre-reqs
 Temp creds off
@@ -106,7 +107,7 @@ Test cluster
 
 ----
 
-# Lab06 - Install ALB and K8s console
+## Lab06 - Install ALB and K8s console
 
 ALB controller provision
 K8s console 
@@ -134,7 +135,7 @@ deploy
 Create ingress  - type alb / /like
 change index.html -> alb
 
-
+-----
 -----
 
 ### Typical stack output: 
