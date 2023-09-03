@@ -11,6 +11,25 @@ The scripts `check-labXX.sh` will run some tests to check the participant has do
 `cleanup-all.sh` will take the participants environment back to the begining state of the lab.
 
 
+----
+
+## Known issues with lab:
+
+Without any actions you will run out of space just after lab 5 fix:
+
+Either:
+* run 00-setup/02-resize-osdisk.sh - will rezie root disk to 32GB (no reboot required)
+* or just before you start lab 5 run `(docker images -q | xargs docker rmi || true) 2> /dev/null`
+
+* Edits must be done correctly
+
+* If a participant switches terminals some important environment variables will be undefined. Not always obvious (eg. leaves values unset in config files)
+
+* EKS build will fail if for soem reason Cloud9 temporary credentials are still enabled - check with this command:
+```bash
+aws cloud9 describe-environments --environment-id $C9_PID --query environments[0].managedCredentialsStatus --output text
+```
+
 -------
 
 ## The workshop default environment
@@ -30,27 +49,22 @@ ClouldWatch:  containersid-MythicalMonolithLogGroup-tN9a8V1mSrOA
 ECR: containersid-like-8vloc4ntgy1t  (empty)
 ECR: containersid-mono-cxdsl3ptepdt  (empty)
 
-----
-
-## Known issues with lab:
-
-Without any actions you will run out of space just after lab 5 fix:
-
-Either:
-
-* run 00-setup/02-resize-osdisk.sh - will rezie root disk to 32GB (no reboot required)
-* or just before you start lab 5 run `(docker images -q | xargs docker rmi || true) 2> /dev/null`
-
 -----
 
 # The Labs
 
+## Docker basics
+
+Docker practice commands
+
 ## LAB01 - docker stuff
+
 Populates mono repo with one image 
 
 ---
 
 ## LAB02 -  run a standalone task
+
 New version of task definition (Monolith-Definition-containersid:2)- pointing to monolth image above
 Run the task - directly - (get it's public ip) - curl http://TASK_PUBLIC_IP_ADDRESS/mysfits
 check cloud watch - then stop the task
@@ -87,12 +101,14 @@ Test cluster
 ----
 
 # Lab06 - Install ALB and K8s console
+
 ALB controller provision
 K8s console 
 
 ---
 
 ## Lab07 deploy monolyth service
+
 DynamoDB policy - for IRSA
 Service Account
 yaml for monolyth and deploy - includes service type LoadBalancer (port 80)
