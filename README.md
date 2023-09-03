@@ -4,11 +4,15 @@
 
 The scripts `check-labX.sh` will run some tests to check the participant has done the requested steps for each lab.
 
-`lab0-setup.sh` - does all the setup and applies the root disk resize fix (see known issues below)
+The lab* scripts will fast forward a participant (or a facilitator) to help them catch up:
 
+`lab0-setup.sh` - does all the setup and applies the root disk resize fix (see known issues below)
 `labX.sh` - will build the repective X lab from the workshop and run the tests
 
+Cleanup/reset
+
 `cleanup-all.sh` will take the participants environment back to the beginning state of the lab.
+The labX.sh could then get them back to a particular part of the work shop quickly
 
 
 ----
