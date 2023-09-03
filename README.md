@@ -2,7 +2,7 @@
 
 ## Helper scripts for aws staff facilitating the workshop
 
-The scripts `check-labXX.sh` will run some tests to check the participant has done the requested steps for each lab.
+The scripts `check-labX.sh` will run some tests to check the participant has done the requested steps for each lab.
 
 `lab0-setup.sh` - does all the setup and applies the root disk resize fix (see known issues below)
 
