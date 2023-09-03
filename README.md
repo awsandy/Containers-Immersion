@@ -104,6 +104,7 @@ change index.html -> alb
 -----
 
 ### Typical stack output: 
+
 (Also in workshop-1/cfn-output.json)
 
 DynamoTable	    Table-containersid
