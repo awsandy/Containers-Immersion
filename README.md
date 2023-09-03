@@ -12,7 +12,7 @@ The lab* scripts will fast forward a participant (or a facilitator) to help them
 Cleanup/reset
 
 `cleanup-all.sh` will take the participants environment back to the beginning state of the lab.
-The labX.sh could then get them back to a particular part of the work shop quickly
+The labX.sh could then get them back to a particular part of the workshop quickly.
 
 
 ----
