@@ -12,6 +12,23 @@ if [[ $tdc -lt 2 ]]; then
 else
     echo "PASSED: found >1 task definition for Mono"
 fi
+tds=$(aws ecs list-task-definitions | jq -r .taskDefinitionArns[] | rev | cut -f1 -d'/' | rev)
+for i in $tds; do
+    if [[ $i != *"Monolith-Definition-containersid:1" ]]; then
+        aws ecs describe-task-definition --task-definition $i --query taskDefinition.containerDefinitions | grep image | grep containersid-mono > /dev/null
+            if [[ $? -ne 0 ]]; then
+                echo "ERROR: no containersid-mono ECR image in modified task definition"
+            else
+                echo "PASSED: found containersid-mono ECR image in modified task definition"
+                break
+            fi
+    fi
+done
+
+
+
+
+
 td=$(aws ecs list-task-definitions --query taskDefinitionArns | jq .[] |  aws ecs list-task-definitions --query taskDefinitionArns | jq -r '.[]' | grep ':2')
 aws ecs describe-task-definition --task-definition $td --query taskDefinition.containerDefinitions | grep image | grep containersid-mono > /dev/null
 if [[ $? -ne 0 ]]; then
