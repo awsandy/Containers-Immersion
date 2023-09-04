@@ -6,5 +6,5 @@ cd lab08
 ./05*
 ./06*
 cd ~/environment/Containers-Immersion
-./check-lab08.sh
+./check-lab8.sh
 echo "Done"

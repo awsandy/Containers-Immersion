@@ -6,4 +6,4 @@ cd lab04-microservices
 ./05*
 ./06*
 cd ~/environment/Containers-Immersion
-./check-lab04.sh
+./check-lab4.sh

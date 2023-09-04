@@ -3,4 +3,4 @@ cd lab05-eks-cluster
 ./02*
 ./03*
 cd ~/environment/Containers-Immersion
-./check-lab05.sh
+./check-lab5.sh
