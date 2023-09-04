@@ -6,7 +6,7 @@ else
     echo "PASSED: found $rc task definitions for Mono"
 fi
 # image check
-tdc=$(aws ecs list-task-definitions --query taskDefinitionArns --output text | grep containersid | grep -i mono | wc -l )
+tdc=$(aws ecs list-task-definitions --query taskDefinitionArns | grep containersid | grep -i mono | wc -l )
 if [[ $tdc -lt 2 ]]; then
     echo "ERROR: expected second task definition"
 else
