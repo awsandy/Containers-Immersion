@@ -1,6 +1,7 @@
 rm -f ~/.kube/config/
 rm -rf ~/.kube/cache/
-
+aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material file://~/.ssh/id_rsa.pub 2> /dev/null
+aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material fileb://~/.ssh/id_rsa.pub 2> /dev/null
 tc=$(aws cloud9 describe-environments --environment-id $C9_PID --query environments[0].managedCredentialsStatus --output text)
 if [[ $tc != "DISABLED_BY_OWNER" ]];then
   echo "ERROR: Cloud9 Temporary credentials are not disabled - exiting"
