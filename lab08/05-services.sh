@@ -1,3 +1,4 @@
+cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
 ALB=$(kubectl get ing mythical-mysfits-eks -o json | jq -r '.status.loadBalancer.ingress[0].hostname' | grep -v Ingress)
 echo $ALB | grep elb > /dev/null
 if [[ $? -ne 0 ]];then
