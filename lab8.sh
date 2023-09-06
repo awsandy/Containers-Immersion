@@ -1,3 +1,4 @@
+kubectl delete -f /home/ec2-user/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml
 cd lab08
 ./01*
 ./02*
