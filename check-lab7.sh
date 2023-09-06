@@ -13,7 +13,7 @@ else
 fi
 
 echo "Repo check"
-~/environment/Containers-Immersion/check-lab4.sh
+~/environment/Containers-Immersion/check-lab1.sh
 rn=$(aws ecr describe-repositories | jq .repositories[].repositoryName | grep containersid-mono | tr -d '"')
 aws ecr describe-images --repository-name $rn | grep latest > /dev/null
 if [[ $? -ne 0 ]];then
