@@ -27,9 +27,9 @@ fi
 rn=$(aws ecr describe-repositories | jq -r .repositories[].repositoryName | grep containersid-mono) 
 aws ecr describe-images --repository-name $rn | grep nolike > /dev/null
 if [[ $? -ne 0 ]];then
-    echo "ERROR: Can't find mono image nolike tag in ECR"
+    echo "ERROR: Can't find mono image nolike tag in ECRrepo $rn""
 else
-    echo "PASSED: mono image nolike tag found in ECR " 
+    echo "PASSED: mono image nolike tag found in ECR repo $rn" " 
 fi
 rn=$(aws ecr describe-repositories | jq -r .repositories[].repositoryName | grep containersid-like) 
 aws ecr describe-images --repository-name $rn | grep like > /dev/null
