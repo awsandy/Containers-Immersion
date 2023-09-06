@@ -1,4 +1,11 @@
 cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
+kubectl get deployments -n default | grep myth | grep '2/2' > /dev/null
+grep '${' monolith-app.yaml
+if [[ $? -eq 0 ]];then
+    echo "PASSED: K8s deployment mythical-mysfits-eks 2/2"
+else
+    echo "PASSED: K8s deployment mythical-mysfits-eks is not 2/2"
+fi
 grep '${' monolith-app.yaml
 if [[ $? -eq 0 ]];then
     echo "ERROR: check env vars sub in ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/monolith-app.yaml"
